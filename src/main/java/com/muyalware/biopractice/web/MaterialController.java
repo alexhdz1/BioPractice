@@ -46,6 +46,11 @@ public class MaterialController {
         jpa.create(material);
         return "lista";
     }
+    
+    public String agregaMaterial() throws IllegalOrphanException, com.muyalware.biopractice.controller.exceptions.exceptions.IllegalOrphanException {
+        jpa.create(material);
+        return "lista";
+    }
 
     public List<Material> getRegistrados() {
         return jpa.findMaterialEntities();
