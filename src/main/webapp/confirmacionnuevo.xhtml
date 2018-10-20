@@ -8,7 +8,7 @@
 
     <ui:define name="content" >
         <div class="jumbotron">
-       Nuevo nombre :#{NuevoMaterialBean.nombre}
+       Nuevo nombre :#{NuevoMaterialBean.material.nombre}
        <br></br>
        nuevo descrpcion :#{NuevoMaterialBean.descripcion}
        <br></br>
@@ -24,7 +24,9 @@
        
        nuevo categoria :#{NuevoMaterialBean.color}
        <br></br>
-
+       
+      <h:commandButton value = "Insert" action="materialController.create(new Material(NuevoMaterialbean.nombre, NuevoMaterialbean.descripcion, NuevoMaterialbean.unidades, NuevoMaterialbean.prestado, NuevoMaterialbean.categoria, NuevoMaterialbean.subcategoria, NuevoMaterialbean.color))}"> </h:commandButton>-
+                
    
  </div>
                                          

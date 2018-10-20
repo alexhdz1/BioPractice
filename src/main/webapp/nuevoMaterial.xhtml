@@ -13,29 +13,28 @@
 
                  <h:form>
                 <h:outputLabel for="nombre">Nuevo nombre</h:outputLabel>
-                <h:inputText value="#{NuevoMaterialBean.nombre}"></h:inputText>
+                <p:inputText value="#{NuevoMaterialBean.material.nombre}" required ="true" id="Nombre"></p:inputText>
                 
                 <h:outputLabel for="descripcion">Nuevo descripcion:</h:outputLabel>
-                <h:inputText value="#{NuevoMaterialBean.descripcion}"></h:inputText> 
+                <p:inputText value="#{NuevoMaterialBean.material.descripcion}" required ="true" id="Descripcion"></p:inputText> 
                 
                 <h:outputLabel for="unidades">Nuevo uunidades</h:outputLabel>
-                <h:inputText value="#{NuevoMaterialBean.unidades}"></h:inputText> 
+                <p:inputText value="#{NuevoMaterialBean.material.unidades}" required ="true" id="Unidades"></p:inputText> 
                 
                 <h:outputLabel for="prestado">Nuevo prestado</h:outputLabel>
-                <h:inputText value="#{NuevoMaterialBean.prestado}"></h:inputText> 
+                <p:inputText value="#{NuevoMaterialBean.material.prestado}" required ="true" id="Prestado"></p:inputText> 
                 
                 <h:outputLabel for="categoria">Nuevca categoria</h:outputLabel>
-                <h:inputText value="#{NuevoMaterialBean.categoria}"></h:inputText>
+                <p:inputText value="#{NuevoMaterialBean.material.categoria}" required ="true" id="Categoria"></p:inputText>
                 
                 <h:outputLabel for="subcategoria">Nuevca subcategoria</h:outputLabel>
-                <h:inputText value="#{NuevoMaterialBean.subcategoria}"></h:inputText>
+                <p:inputText value="#{NuevoMaterialBean.material.subcategoria}" required ="true" id="Subcategoria"></p:inputText>
                 
-                <h:outputLabel for="color">Nuevco color</h:outputLabel>
-                <h:inputText value="#{NuevoMaterialBean.color}"></h:inputText>
-                
+               
                 
                 
-                <h:commandButton action="confirmacionnuevo" value="Submit"> </h:commandButton>
+                <!--<h:commandButton action="confirmacionnuevo" value="Submit"> </h:commandButton> -->
+                <p:commandButton action="#{NuevoMaterialBean.addMaterial}" value ="Registrar"/>
                  </h:form>
         </div>
                                          
