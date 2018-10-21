@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/web/EditarMaterialController.java
 /Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/web/KitController.java
 /Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/AdministradorJpaController.java
@@ -21,3 +22,29 @@
 /Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/model/PersistenceUtil.java
 /Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/model/Alumno.java
 /Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/exceptions/exceptions/PreexistingEntityException.java
+=======
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/model/Kit.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/controller/exceptions/exceptions/NonexistentEntityException.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/controller/exceptions/exceptions/PreexistingEntityException.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/controller/exceptions/exceptions/IllegalOrphanException.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/controller/AlumnoJpaController.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/controller/NonexistentEntityException.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/model/PersistenceUtil.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/model/Material.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/controller/IllegalOrphanException.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/web/KitController.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/web/NuevoMaterialBean.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/controller/ProfesorJpaController.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/model/Administrador.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/controller/KitJpaController.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/web/AlumnoController.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/controller/AdministradorJpaController.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/controller/MaterialJpaController.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/web/ProfesorController.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/web/MaterialController.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/model/Profesor.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/model/Alumno.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/controller/PreexistingEntityException.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/web/AdministradorController.java
+/home/hp/Escritorio/bioPractice/src/main/java/com/muyalware/biopractice/web/EditarMaterialController.java
+>>>>>>> refs/remotes/origin/master

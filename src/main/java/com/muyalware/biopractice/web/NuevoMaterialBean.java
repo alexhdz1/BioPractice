@@ -17,18 +17,18 @@ import javax.faces.bean.RequestScoped;
  *
  * @author alexis
  */
-@ManagedBean
+@ManagedBean(name ="NuevoMaterialBean")
 @RequestScoped
-public class MaterialController {
+public class NuevoMaterialBean {
 
     private final MaterialJpaController jpa;
     private Material material;
-    private Material m;
+    
 
     /**
      * Creates a new instance of MaterialController
      */
-    public MaterialController() {
+    public NuevoMaterialBean() {
         jpa = new MaterialJpaController(PersistenceUtil.getEntityManagerFactory());
         material = new Material();
 }

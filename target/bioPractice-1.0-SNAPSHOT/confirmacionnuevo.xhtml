@@ -1,0 +1,37 @@
+<ui:composition
+    template="/WEB-INF/facelets/templates/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content" >
+        <div class="jumbotron">
+       Nuevo nombre :#{NuevoMaterialBean.material.nombre}
+       <br></br>
+       nuevo descrpcion :#{NuevoMaterialBean.descripcion}
+       <br></br>
+       nuevo unidades :#{NuevoMaterialBean.unidades}
+       <br></br>
+       nuevo prestado :#{NuevoMaterialBean.prestado}
+       <br></br>
+       nuevo categoria :#{NuevoMaterialBean.categoria}
+       <br></br>
+       
+       nuevo categoria :#{NuevoMaterialBean.subcategoria}
+       <br></br>
+       
+       nuevo categoria :#{NuevoMaterialBean.color}
+       <br></br>
+       
+      <h:commandButton value = "Insert" action="materialController.create(new Material(NuevoMaterialbean.nombre, NuevoMaterialbean.descripcion, NuevoMaterialbean.unidades, NuevoMaterialbean.prestado, NuevoMaterialbean.categoria, NuevoMaterialbean.subcategoria, NuevoMaterialbean.color))}"> </h:commandButton>-
+                
+   
+ </div>
+                                         
+
+    </ui:define>
+
+
+</ui:composition>
