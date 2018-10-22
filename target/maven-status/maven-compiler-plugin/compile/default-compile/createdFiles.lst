@@ -5,8 +5,8 @@ com/muyalware/biopractice/web/loginController.class
 com/muyalware/biopractice/web/AlumnoController.class
 com/muyalware/biopractice/controller/exceptions/exceptions/IllegalOrphanException.class
 com/muyalware/biopractice/model/Profesor_.class
-com/muyalware/biopractice/controller/ProfesorJpaController.class
 com/muyalware/biopractice/web/AdministradorController.class
+com/muyalware/biopractice/controller/ProfesorJpaController.class
 com/muyalware/biopractice/model/Profesor.class
 com/muyalware/biopractice/model/PersistenceUtil.class
 com/muyalware/biopractice/controller/FiltroController.class
@@ -23,8 +23,8 @@ com/muyalware/biopractice/controller/AlumnoJpaController.class
 com/muyalware/biopractice/model/Kit.class
 com/muyalware/biopractice/controller/KitJpaController.class
 com/muyalware/biopractice/model/Material.class
-com/muyalware/biopractice/web/KitController.class
 com/muyalware/biopractice/web/ProfesorController.class
+com/muyalware/biopractice/web/KitController.class
 com/muyalware/biopractice/controller/MaterialJpaController.class
 com/muyalware/biopractice/web/EditarMaterialController.class
 com/muyalware/biopractice/controller/exceptions/exceptions/NonexistentEntityException.class

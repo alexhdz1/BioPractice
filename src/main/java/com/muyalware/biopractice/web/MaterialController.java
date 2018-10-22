@@ -58,6 +58,11 @@ public class MaterialController {
 	lista.add(jpa.findMaterial(material.getId()));
         return jpa.findMaterial(material.getId());   
     }
+    
+    public String agregaMaterial() throws IllegalOrphanException, com.muyalware.biopractice.controller.exceptions.exceptions.IllegalOrphanException {
+        jpa.create(material);
+        return "lista";
+    }
 
     public void busca(){
 	lista = jpa.findMaterials(material);

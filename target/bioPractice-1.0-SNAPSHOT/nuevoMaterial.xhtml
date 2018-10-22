@@ -1,0 +1,45 @@
+<ui:composition
+    template="/WEB-INF/facelets/templates/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content" >
+        <div class="jumbotron"   >
+
+
+
+                 <h:form>
+                <h:outputLabel for="nombre">Nuevo nombre</h:outputLabel>
+                <p:inputText value="#{NuevoMaterialBean.material.nombre}" required ="true" id="Nombre"></p:inputText>
+                
+                <h:outputLabel for="descripcion">Nuevo descripcion:</h:outputLabel>
+                <p:inputText value="#{NuevoMaterialBean.material.descripcion}" required ="true" id="Descripcion"></p:inputText> 
+                
+                <h:outputLabel for="unidades">Nuevo uunidades</h:outputLabel>
+                <p:inputText value="#{NuevoMaterialBean.material.unidades}" required ="true" id="Unidades"></p:inputText> 
+                
+                <h:outputLabel for="prestado">Nuevo prestado</h:outputLabel>
+                <p:inputText value="#{NuevoMaterialBean.material.prestado}" required ="true" id="Prestado"></p:inputText> 
+                
+                <h:outputLabel for="categoria">Nuevca categoria</h:outputLabel>
+                <p:inputText value="#{NuevoMaterialBean.material.categoria}" required ="true" id="Categoria"></p:inputText>
+                
+                <h:outputLabel for="subcategoria">Nuevca subcategoria</h:outputLabel>
+                <p:inputText value="#{NuevoMaterialBean.material.subcategoria}" required ="true" id="Subcategoria"></p:inputText>
+                
+               
+                
+                
+                <!--<h:commandButton action="confirmacionnuevo" value="Submit"> </h:commandButton> -->
+                <p:commandButton action="#{NuevoMaterialBean.addMaterial}" value ="Registrar"/>
+                 </h:form>
+        </div>
+                                         
+
+    </ui:define>
+
+
+</ui:composition>
