@@ -14,6 +14,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import com.muyalware.biopractice.model.Alumno;
 import com.muyalware.biopractice.model.Material;
+import com.muyalware.biopractice.model.Material_;
 import com.muyalware.biopractice.model.Profesor;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,52 +38,11 @@ public class MaterialJpaController implements Serializable {
 
     public void create(Material material) throws IllegalOrphanException {
         List<String> illegalOrphanMessages = null;
-        Alumno alumnoOrphanCheck = material.getAlumno();
-        if (alumnoOrphanCheck != null) {
-            Material oldMaterialOfAlumno = alumnoOrphanCheck.getMaterial();
-            if (oldMaterialOfAlumno != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("The Alumno " + alumnoOrphanCheck + " already has an item of type Material whose alumno column cannot be null. Please make another selection for the alumno field.");
-            }
-        }
-        Profesor profesorOrphanCheck = material.getProfesor();
-        if (profesorOrphanCheck != null) {
-            Material oldMaterialOfProfesor = profesorOrphanCheck.getMaterial();
-            if (oldMaterialOfProfesor != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("The Profesor " + profesorOrphanCheck + " already has an item of type Material whose profesor column cannot be null. Please make another selection for the profesor field.");
-            }
-        }
-        if (illegalOrphanMessages != null) {
-            throw new IllegalOrphanException(illegalOrphanMessages);
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Alumno alumno = material.getAlumno();
-            if (alumno != null) {
-                alumno = em.getReference(alumno.getClass(), alumno.getId());
-                material.setAlumno(alumno);
-            }
-            Profesor profesor = material.getProfesor();
-            if (profesor != null) {
-                profesor = em.getReference(profesor.getClass(), profesor.getId());
-                material.setProfesor(profesor);
-            }
             em.persist(material);
-            if (alumno != null) {
-                alumno.setMaterial(material);
-                alumno = em.merge(alumno);
-            }
-            if (profesor != null) {
-                profesor.setMaterial(material);
-                profesor = em.merge(profesor);
-            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -97,57 +57,8 @@ public class MaterialJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Material persistentMaterial = em.find(Material.class, material.getId());
-            Alumno alumnoOld = persistentMaterial.getAlumno();
-            Alumno alumnoNew = material.getAlumno();
-            Profesor profesorOld = persistentMaterial.getProfesor();
-            Profesor profesorNew = material.getProfesor();
             List<String> illegalOrphanMessages = null;
-            if (alumnoNew != null && !alumnoNew.equals(alumnoOld)) {
-                Material oldMaterialOfAlumno = alumnoNew.getMaterial();
-                if (oldMaterialOfAlumno != null) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("The Alumno " + alumnoNew + " already has an item of type Material whose alumno column cannot be null. Please make another selection for the alumno field.");
-                }
-            }
-            if (profesorNew != null && !profesorNew.equals(profesorOld)) {
-                Material oldMaterialOfProfesor = profesorNew.getMaterial();
-                if (oldMaterialOfProfesor != null) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("The Profesor " + profesorNew + " already has an item of type Material whose profesor column cannot be null. Please make another selection for the profesor field.");
-                }
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            if (alumnoNew != null) {
-                alumnoNew = em.getReference(alumnoNew.getClass(), alumnoNew.getId());
-                material.setAlumno(alumnoNew);
-            }
-            if (profesorNew != null) {
-                profesorNew = em.getReference(profesorNew.getClass(), profesorNew.getId());
-                material.setProfesor(profesorNew);
-            }
             material = em.merge(material);
-            if (alumnoOld != null && !alumnoOld.equals(alumnoNew)) {
-                alumnoOld.setMaterial(null);
-                alumnoOld = em.merge(alumnoOld);
-            }
-            if (alumnoNew != null && !alumnoNew.equals(alumnoOld)) {
-                alumnoNew.setMaterial(material);
-                alumnoNew = em.merge(alumnoNew);
-            }
-            if (profesorOld != null && !profesorOld.equals(profesorNew)) {
-                profesorOld.setMaterial(null);
-                profesorOld = em.merge(profesorOld);
-            }
-            if (profesorNew != null && !profesorNew.equals(profesorOld)) {
-                profesorNew.setMaterial(material);
-                profesorNew = em.merge(profesorNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -177,16 +88,6 @@ public class MaterialJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The material with id " + id + " no longer exists.", enfe);
             }
-            Alumno alumno = material.getAlumno();
-            if (alumno != null) {
-                alumno.setMaterial(null);
-                alumno = em.merge(alumno);
-            }
-            Profesor profesor = material.getProfesor();
-            if (profesor != null) {
-                profesor.setMaterial(null);
-                profesor = em.merge(profesor);
-            }
             em.remove(material);
             em.getTransaction().commit();
         } finally {
@@ -209,6 +110,7 @@ public class MaterialJpaController implements Serializable {
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
             cq.select(cq.from(Material.class));
+            cq.orderBy(em.getCriteriaBuilder().asc(cq.from(Material.class).get(Material_.id)));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -229,6 +131,18 @@ public class MaterialJpaController implements Serializable {
         }
     }
 
+    public List<Material> findMaterials(Material mat){
+	EntityManager em = getEntityManager();
+	String jpl = "SELECT m FROM material m";
+	if(mat != null){
+	    if(mat.getId() != 0){
+		jpl = jpl + " WHERE m.id = " + Integer.toString(mat.getId());
+	    }
+	}
+	Query query = em.createQuery(jpl);
+	return query.getResultList();
+    }
+    
     public int getMaterialCount() {
         EntityManager em = getEntityManager();
         try {
@@ -240,6 +154,30 @@ public class MaterialJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+    
+    public void guardar(Material material){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.persist(material);
+	em.getTransaction().commit();
+        em.close();
+    }
+   
+    public void modificar(Material material){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.merge(material);
+	em.getTransaction().commit();
+        em.close();
+    }
+    
+    public void eliminar(Material material){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.remove(em.merge(material));
+	em.getTransaction().commit();
+        em.close();
     }
     
 }

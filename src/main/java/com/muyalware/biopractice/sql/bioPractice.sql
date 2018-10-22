@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS kit, administrador, alumno, profesor, material;
+
 CREATE TABLE kit(
   id serial               primary key       not null,
   fecha_Vencimiento       TIMESTAMP
@@ -29,7 +30,7 @@ CREATE TABLE alumno(
   contrasena              text              not null,
   num_cuenta              text              not null,
   estado                  boolean           not null,
-  fotografia              bytea,
+  fotografia              bytea             not null,
   activo                  boolean           not null
 );
 
@@ -41,9 +42,8 @@ CREATE TABLE material(
   prestado                boolean           not null,
   categoria               text              not null,
   subCategoria            text              not null,
-  fotografia              bytea,
-  constraint profepk      foreign key(id)       references profesor(id),
-  constraint alumnopk     foreign key(id)       references alumno(id)
+  fotografia              bytea             not null,
+  
 );
 
 insert into alumno (id, nombre, correo, contrasena, num_cuenta, estado, fotografia, activo) values (1, 'Bridgette Gullane', 'visionary@ciencias.unam.mx', 'xOrMAkPV', 426055931, false, '#bd4f9e', false);
@@ -124,3 +124,5 @@ insert into material (id, nombre, descripcion, unidades, prestado, categoria, su
 insert into material (id, nombre, descripcion, unidades, prestado, categoria, subcategoria, fotografia) values (8, 'Job', 'ALCOHOL', 1, false, 'Lemon Verbena Waterless Hand Wash', 'Mangiacotti Floral LLC', '#f2f22c');
 insert into material (id, nombre, descripcion, unidades, prestado, categoria, subcategoria, fotografia) values (9, 'Veribet', 'Black Walnut', 4, false, 'Black Walnut', 'Antigen Laboratories, Inc.', '#4cd2a5');
 insert into material (id, nombre, descripcion, unidades, prestado, categoria, subcategoria, fotografia) values (10, 'Tempsoft', 'zaleplon', 19, false, 'Zaleplon', 'Upsher-Smith Laboratories, Inc.', '#30f6bf');
+
+ALTER TABLE material DROP CONSTRAINT profepk;

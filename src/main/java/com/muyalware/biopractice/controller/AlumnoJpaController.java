@@ -39,21 +39,7 @@ public class AlumnoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Material material = alumno.getMaterial();
-            if (material != null) {
-                material = em.getReference(material.getClass(), material.getId());
-                alumno.setMaterial(material);
-            }
             em.persist(alumno);
-            if (material != null) {
-                Alumno oldAlumnoOfMaterial = material.getAlumno();
-                if (oldAlumnoOfMaterial != null) {
-                    oldAlumnoOfMaterial.setMaterial(null);
-                    oldAlumnoOfMaterial = em.merge(oldAlumnoOfMaterial);
-                }
-                material.setAlumno(alumno);
-                material = em.merge(material);
-            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -68,42 +54,9 @@ public class AlumnoJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Alumno persistentAlumno = em.find(Alumno.class, alumno.getId());
-            Material materialOld = persistentAlumno.getMaterial();
-            Material materialNew = alumno.getMaterial();
-            List<String> illegalOrphanMessages = null;
-            if (materialOld != null && !materialOld.equals(materialNew)) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("You must retain Material " + materialOld + " since its alumno field is not nullable.");
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            if (materialNew != null) {
-                materialNew = em.getReference(materialNew.getClass(), materialNew.getId());
-                alumno.setMaterial(materialNew);
-            }
             alumno = em.merge(alumno);
-            if (materialNew != null && !materialNew.equals(materialOld)) {
-                Alumno oldAlumnoOfMaterial = materialNew.getAlumno();
-                if (oldAlumnoOfMaterial != null) {
-                    oldAlumnoOfMaterial.setMaterial(null);
-                    oldAlumnoOfMaterial = em.merge(oldAlumnoOfMaterial);
-                }
-                materialNew.setAlumno(alumno);
-                materialNew = em.merge(materialNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
-            String msg = ex.getLocalizedMessage();
-            if (msg == null || msg.length() == 0) {
-                Integer id = alumno.getId();
-                if (findAlumno(id) == null) {
-                    throw new NonexistentEntityException("The alumno with id " + id + " no longer exists.");
-                }
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -122,17 +75,6 @@ public class AlumnoJpaController implements Serializable {
                 alumno.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The alumno with id " + id + " no longer exists.", enfe);
-            }
-            List<String> illegalOrphanMessages = null;
-            Material materialOrphanCheck = alumno.getMaterial();
-            if (materialOrphanCheck != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Alumno (" + alumno + ") cannot be destroyed since the Material " + materialOrphanCheck + " in its material field has a non-nullable alumno field.");
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
             }
             em.remove(alumno);
             em.getTransaction().commit();

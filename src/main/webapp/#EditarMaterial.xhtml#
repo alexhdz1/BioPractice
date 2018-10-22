@@ -1,0 +1,78 @@
+<ui:composition
+    template="/WEB-INF/facelets/templates/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content" >
+        <div class="jumbotron"   >
+
+            <h:form>
+                <h:panelGrid columns= "2">
+                    <h:outputText value = "id"/>
+                    <h:inputText id="material_id" value ="#{materialController.material.id}" />
+                    <h:outputText value = "Nombre"/>
+                    <h:inputText id="material_nombre" value ="#{materialController.material.nombre}" />
+                    <h:outputText  value = "Descripcion"/>
+                    <h:inputText id="material_descripcion" value ="#{materialController.material.descripcion}" />
+                    <h:outputText value = "Unidades"/>
+                    <h:inputText id="material_unidades" value ="#{materialController.material.unidades}" />
+                    <h:outputText value = "Categoria"/>
+                    <h:inputText id="material_categoria" value ="#{materialController.material.categoria}" />
+                    <h:outputText value = "Subcategoria"/>
+                    <h:inputText id="material_subcategoria" value ="#{materialController.material.subcategoria}" />
+                    <h:outputText value = "Prestado"/>
+                    <h:selectOneMenu id="material_prestado" value="#{materialController.material.prestado}">
+                        <f:selectItem itemLabel="true" itemValue="true"/>
+                        <f:selectItem itemLabel="false" itemValue="false"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandButton value ="Buscar"  action="#{materialController.buscar()}" />
+                <h:commandButton value ="Guardar" action="#{materialController.guardar()}"/>
+		<h:commandButton value ="Editar" action="#{materialController.modificar()}"/>
+		<h:commandButton value ="Eliminar" action="#{materialController.eliminar()}"/>
+                <p:dataTable value="#{materialController.lista}" var="mat">
+                    <p:column headerText="Id">
+                        <h:outputText value="#{mat.id}"/>
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{mat.nombre}"/>
+                    </p:column>
+                    <p:column headerText="Descripcion">
+                        <h:outputText value="#{mat.descripcion}"/>
+                    </p:column>
+                    <p:column headerText="Unidades">
+                        <h:outputText value="#{mat.unidades}"/>
+                    </p:column>
+                    <p:column headerText="Prestado">
+                        <h:outputText value="#{mat.prestado}"/>
+                    </p:column>
+                    <p:column headerText="Categoria">
+                        <h:outputText value="#{mat.categoria}"/>
+                    </p:column>
+                    <p:column headerText="SubCategoria">
+                        <h:outputText value="#{mat.subcategoria}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </div>
+	<script>
+	  function carga(id,nom,des,uni,pre,cat,sub){
+	      document.getElementById("material_id").value = id;
+	      document.getElementById("material_nombre").value = nom;
+	      document.getElementById("material_descripcion").value = des;
+	      document.getElementById("material_unidades").value = uni;
+	      document.getElementById("material_prestado").value = pre;
+	      document.getElementById("material_categoria").value = cat;
+	      document.getElementById("material_subcategoria").value = sub;
+	  }
+	</script>
+
+    </ui:define>
+
+
+</ui:composition>
+

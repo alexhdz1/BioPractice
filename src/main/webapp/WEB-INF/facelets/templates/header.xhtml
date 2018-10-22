@@ -6,17 +6,17 @@
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
   <!-- Main jumbotron for a primary marketing message or call to action -->
-  <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #01DF01;">
+  <nav class="navbar navbar-expand-md navbar-light  fixed-top" style="background-color:lightgray;">
     <a class="navbar-brand" href="faces/index.xhtml">BioPractice</a>
     
     
-     <li class="nav-item active">
-        <a class="nav-link" href="faces/EditarMaterial.xhtml">Material<span class="sr-only">(current)</span></a>
+     <li class="nav-item active  justify-content-center">
+         <a class="nav-link" href="faces/EditarMaterial.xhtml" style="color:black">Material<span class="sr-only">(current)</span></a>
       </li>
     
-    <li class="nav-item active">
-        <a class="nav-link" href="faces/EditarMaterial.xhtml">Prestamo<span class="sr-only">(current)</span></a>
-      </li>
+    <!--<li class="nav-item active">
+        <a class="nav-link" href="faces/EditarMaterial.xhtml" style="color:black">Prestamo<span class="sr-only">(current)</span></a>
+      </li>-->
     
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,43 +24,18 @@
     </button>
     <div class="collapse navbar-collapse">
       <div class="navbar-nav ml-auto">
-        <c:choose>
-          <c:when test="#{userBean.logged}">
-            <div class="my-2 my-lg-0">
-              <p:graphicImage value="#{userBean.miFoto}" width="48" height="48"/>
-              <button class="btn btn-primary" style="height:48px;">
-                <i class="fa fa-sign-in" aria-hidden="true"></i>
-                #{userBean.usuario.usuario}
-              </button>
+            <div class="my-2 my-lg-0">           
             </div>
+            
             <div class ="my-2 my-lg-0">
               <h:form id="exit">
                 <h:commandButton action="#{loginController.logout()}"
+                                 
                                value="Cerrar Sesión"
                                class="btn btn-outline-success my-2 my-sm-0"
                                style="height:48px;"/>
               </h:form>
             </div>
-          </c:when>
-          <c:otherwise>
-            <h:form id="myForm" class="form-inline my-2 my-lg-0">
-              <h:inputText value="#{loginController.usuario.usuario}"
-                           required="true" id="Username"
-                           size="15" class="form-control mr-sm-2"
-                           a:placeholder="Correo Electrónico"/>
-
-              <h:inputSecret value="#{loginController.usuario.contraseña}"
-                             required="true" id="Password"
-                             class="form-control mr-sm-2"
-                             a:placeholder="Contraseña"/>
-
-              <h:commandButton action="#{loginController.canLogin()}"
-                               value="Inicia Sesión"
-                               class="btn btn-outline-success my-2 my-sm-0"/>
-
-            </h:form>
-          </c:otherwise>
-        </c:choose>
       </div>
     </div>
   </nav>

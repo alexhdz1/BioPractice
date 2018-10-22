@@ -72,8 +72,6 @@ public class Profesor implements Serializable {
     @Size(min = 1, max = 59)
     @Column(name = "num_trabajador")
     private String numTrabajador;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "profesor")
-    private Material material;
 
     public Profesor() {
     }
@@ -128,15 +126,6 @@ public class Profesor implements Serializable {
 
     public void setNumTrabajador(String numTrabajador) {
         this.numTrabajador = numTrabajador;
-    }
-
-
-    public Material getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(Material material) {
-        this.material = material;
     }
 
     @Override

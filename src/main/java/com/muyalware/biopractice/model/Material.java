@@ -78,12 +78,6 @@ public class Material implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "subcategoria")
     private String subcategoria;
-    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Alumno alumno;
-    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Profesor profesor;
 
     public Material() {
     }
@@ -158,23 +152,6 @@ public class Material implements Serializable {
         this.subcategoria = subcategoria;
     }
 
-
-    public Alumno getAlumno() {
-        return alumno;
-    }
-
-    public void setAlumno(Alumno alumno) {
-        this.alumno = alumno;
-    }
-
-    public Profesor getProfesor() {
-        return profesor;
-    }
-
-    public void setProfesor(Profesor profesor) {
-        this.profesor = profesor;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -207,5 +184,7 @@ public class Material implements Serializable {
     public void setFotografia(byte[] fotografia) {
         this.fotografia = fotografia;
     }
-    
+    public void imprime(){
+        System.out.println("Hola");
+    }
 }

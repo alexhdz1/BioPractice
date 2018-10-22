@@ -77,8 +77,6 @@ public class Alumno implements Serializable {
     @NotNull
     @Column(name = "estado")
     private boolean estado;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "alumno")
-    private Material material;
 
     public Alumno() {
     }
@@ -142,15 +140,6 @@ public class Alumno implements Serializable {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
-    }
-
-
-    public Material getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(Material material) {
-        this.material = material;
     }
 
     @Override

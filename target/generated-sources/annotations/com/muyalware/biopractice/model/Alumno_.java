@@ -1,17 +1,15 @@
 package com.muyalware.biopractice.model;
 
-import com.muyalware.biopractice.model.Material;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-10-18T19:17:19")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-10-22T16:39:59")
 @StaticMetamodel(Alumno.class)
 public class Alumno_ { 
 
     public static volatile SingularAttribute<Alumno, Boolean> estado;
     public static volatile SingularAttribute<Alumno, String> numCuenta;
-    public static volatile SingularAttribute<Alumno, Material> material;
     public static volatile SingularAttribute<Alumno, String> correo;
     public static volatile SingularAttribute<Alumno, String> contrasena;
     public static volatile SingularAttribute<Alumno, Integer> id;
