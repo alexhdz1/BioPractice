@@ -6,9 +6,6 @@
 package com.muyalware.biopractice.model;
 
 import java.io.Serializable;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,8 +18,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.servlet.http.HttpSession;
-import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -144,28 +139,5 @@ public class Administrador implements Serializable {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-
-    public void login(ActionEvent actionEvent) {
-    RequestContext context = RequestContext.getCurrentInstance();
-    FacesMessage msg = null;
-    if (nombre != null && nombre.equals("admin") && contrasena != null && contrasena.equals("admin")) {
-      activo = true;
-      msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", nombre);
-    } else {
-      activo = false;
-      msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Credenciales no válidas");
-    }
-
-    FacesContext.getCurrentInstance().addMessage(null, msg);
-    context.addCallbackParam("estaLogeado", activo);
-    if (activo)
-      context.addCallbackParam("view", "gauge.xhtml");
-  }
-
-  public void logout() {
-    HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-    session.invalidate();
-    activo = false;
-  }
     
 }

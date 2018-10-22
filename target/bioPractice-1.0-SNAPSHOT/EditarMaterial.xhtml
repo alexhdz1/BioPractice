@@ -8,7 +8,6 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content" >
-<<<<<<< HEAD
         <div class="jumbotron" style="background-color:rgba(248,248,255,0.3) ">
 
             <h:form>
@@ -71,54 +70,6 @@
 	      document.getElementById("material_subcategoria").value = sub;
 	  }
 	</script>
-=======
-        <div class="jumbotron"   >
-	  <form id="materiales">
-            <table class="table">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">Id Material</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Unidades</th>
-                        <th scope="col">Prestado </th>
-                        <th scope="col">Categoria </th>
-                        <th scope="col">SubCategoria </th>
-                        <th scope="col">Descripcion </th>
-                        <th scope="col">Fotografia </th>     
-                    </tr>
-
-                </thead>
-                <tbody>
-                    <c:forEach var ="material" items="#{materialController.registrados}">
-                        <tr>
-                          <td>${material.id}</td>
-			  <input id="m_id${material.id}" type="hidden" value="${material.id}" />
-                          <td contenteditable="true" onkeyup="asigna(this.innerHTML,'m_nombre${material.id}')">${material.nombre} </td>
-			  <input id="m_nombre${material.id}" type="hidden" />
-                          <td contenteditable="true" onkeyup="asigna(this.innerHTML,'m_cantidad${material.id}')">${material.unidades} </td>
-			  <input id="m_cantidad${material.id}" type="hidden" />
-                          <td>${material.prestado} </td>
-                          <td contenteditable="true" onkeyup="asigna(this.innerHTML,'m_categoria${material.id}')">${material.categoria} </td>
-			  <input id="m_categoria${material.id}" type="hidden" />
-                          <td contenteditable="true" onkeyup="asigna(this.innerHTML,'m_subcategoria${material.id}')">${material.subcategoria} </td>
-			  <input id="m_subcategoria${material.id}" type="hidden" />
-                          <td contenteditable="true" onkeyup="asigna(this.innerHTML,'m_descripcion${material.id}')">${material.descripcion} </td>
-			  <input id="m_descripcion${material.id}" type="hidden" />
-                          <td>${material.fotografia} </td>
-                          <!--<td> <a class="nav-link" href="Editar.xhtml? id=#{material.id}">Editar <span class="sr-only">(current)</span></a> </td>-->
-			</tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-	  </form>
-        </div>
-	<script language="JavaScript">
-	  function asigna(valor,elemento){
-      	      document.getElementById(elemento).value = valor;
-	  }
-	</script>
-	
->>>>>>> 8a818be3c28333dbecc55461c0f0b90cdb9f04ca
 
     </ui:define>
 
