@@ -55,8 +55,8 @@ public class MaterialController {
     
     public Material buscar(){
 	lista.clear();
-	lista.add(jpa.findMaterial(material.getId()));
-        return jpa.findMaterial(material.getId());   
+	lista = jpa.findMaterials(material);
+	return jpa.findMaterial(material.getId());
     }
 
     public void busca(){

@@ -133,10 +133,44 @@ public class MaterialJpaController implements Serializable {
 
     public List<Material> findMaterials(Material mat){
 	EntityManager em = getEntityManager();
-	String jpl = "SELECT m FROM material m";
+	String jpl = "SELECT m FROM Material m";
+	boolean creada = false;
 	if(mat != null){
 	    if(mat.getId() != 0){
+		creada = true;
 		jpl = jpl + " WHERE m.id = " + Integer.toString(mat.getId());
+	    }
+	    if(mat.getNombre() != ""){
+		if(creada){
+		    jpl = jpl + " AND m.nombre LIKE '%" + mat.getNombre() + "%'";
+		} else {
+		    creada = true;
+		    jpl = jpl + " WHERE m.nombre LIKE '%" + mat.getNombre() + "%'";
+		}
+	    }
+	    if(mat.getDescripcion() != ""){
+		if(creada){
+		    jpl = jpl + " AND m.descripcion LIKE '%" + mat.getDescripcion() + "%'";
+		} else {
+		    creada = true;
+		    jpl = jpl + " WHERE m.descripcion LIKE '%" + mat.getDescripcion() + "%'";
+		}
+	    }
+	    if(mat.getCategoria() != ""){
+		if(creada){
+		    jpl = jpl + " AND m.categoria LIKE '%" + mat.getCategoria() + "%'";
+		} else {
+		    creada = true;
+		    jpl = jpl + " WHERE m.categoria LIKE '%" + mat.getCategoria() + "%'";
+		}
+	    }
+	    if(mat.getSubcategoria() != ""){
+		if(creada){
+		    jpl = jpl + " AND m.subcategoria LIKE '%" + mat.getSubcategoria() + "%'";
+		} else {
+		    creada = true;
+		    jpl = jpl + " WHERE m.subcategoria LIKE '%" + mat.getSubcategoria() + "%'";
+		}
 	    }
 	}
 	Query query = em.createQuery(jpl);
