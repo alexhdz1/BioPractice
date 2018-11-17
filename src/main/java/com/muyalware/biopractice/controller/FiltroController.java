@@ -39,12 +39,12 @@ public class FiltroController implements Filter {
 
 			String reqURI = reqt.getRequestURI();
 			if (reqURI.indexOf("/login.xhtml") >= 0
-					|| (ses != null && ses.getAttribute("nombre") != null)
+					|| estaPermitida(ses, reqURI)
 					|| reqURI.indexOf("/public/") >= 0
 					|| reqURI.contains("javax.faces.resource"))
 				chain.doFilter(request, response);
 			else
-				resp.sendRedirect(reqt.getContextPath() + "/faces/login.xhtml");
+				resp.sendRedirect(reqt.getContextPath() + determinaDireccionamiento(ses));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -54,5 +54,52 @@ public class FiltroController implements Filter {
 	public void destroy() {
 
 	}
+        
+        /*Recibe una sesion y una url y determina si le es permitido al usuario
+        le es permitido visitar la url
+        */
+        public boolean estaPermitida(HttpSession ses, String reqURI){
+            if (ses != null && ses.getAttribute("nombre") != null){
+                return true;
+            } else if (ses != null && ses.getAttribute("profesor") != null){
+                return permitidasProfesor(reqURI);
+            }
+            else if (ses != null && ses.getAttribute("alumno") != null){
+                return permitidasAlumno(reqURI);
+            }
+            return false;
+        }
+
+    //estas son las paginas que los profesores pueden ver
+    private boolean permitidasProfesor(String reqURI) {
+        if ( reqURI.indexOf("/indexProfesor.xhtml") >= 0){
+            return true;
+        }
+        
+        return false;
+    }
+
+    //estas son las paginas que los alumnos pueden ver
+    private boolean permitidasAlumno(String reqURI) {
+        if ( reqURI.indexOf("/indexAlumno.xhtml") >= 0){
+            return true;
+        }
+        
+        return false;
+    }
+    
+    /*cuando el usuario entra a una direccion no admitida este metodo determina
+    a donde se le va a redirigir
+    */
+    
+    private String determinaDireccionamiento(HttpSession ses){
+        if (ses != null && ses.getAttribute("profesor") != null){
+            return "/faces/indexProfesor.xhtml";
+        }
+        else if (ses != null && ses.getAttribute("alumno") != null){
+            return "/faces/indexAlumno.xhtml";
+        }
+        return "/faces/login.xhtml";
+    }
 }
 

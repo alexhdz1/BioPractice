@@ -69,14 +69,17 @@ public class loginController {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+    /*
+    Revisa si el usuario y la contraseña coinciden con un administrador, si lo 
+    hacen realiza login, de otro modo llama al metodo loginProfesor
+    */
 
     public void login(){
         
         Administrador miAdmin = busca();
         if (miAdmin==null){
             //System.out.println("no existe");
-            muestraMensaje("No existe usuario");
+            loginProfesor();
             
         } else if ( !contra.equals(miAdmin.getContrasena())){
             
@@ -93,6 +96,10 @@ public class loginController {
         }
     }
     
+    /*
+    Revisa si el usuario y la contraseña coinciden con un alumno, si lo 
+    hacen realiza login, de otro modo imprime un mensaje
+    */
     public void loginAlumno(){
         
         Alumno miAlumno = buscaAlumno();
@@ -114,13 +121,16 @@ public class loginController {
           
         }
     }
-    
+    /*
+    Revisa si el usuario y la contraseña coinciden con un profesor, si lo 
+    hacen realiza login, de otro modo llama al metodo loginUsuario
+    */
     public void loginProfesor(){
         
         Profesor miProfesor = buscaProfesor();
         if (miProfesor==null){
             //System.out.println("no existe");
-            muestraMensaje("No existe usuario");
+           loginAlumno();
             
         } else if ( !contra.equals(miProfesor.getContrasena())){
             
@@ -136,7 +146,9 @@ public class loginController {
           
         }
     }
-    
+    /**
+     * Busca si el correo esta en la base de los administradores
+     */    
     public Administrador busca( ){
         Administrador miAdmin = null;
         List<Administrador> listaAdmins = getRegistrados();
@@ -151,7 +163,9 @@ public class loginController {
         }
         return miAdmin;
     }
-    
+    /**
+     * Busca si el correo esta en la base de los alumnos
+     */
     public Alumno buscaAlumno( ){
         Alumno miAlumno = null;
         List<Alumno> listaAlumnos = getListaAlumnos();
@@ -167,6 +181,9 @@ public class loginController {
         return miAlumno;
     }
     
+    /**
+     * Busca si el correo esta en la base de los profesores
+     */
     public Profesor buscaProfesor( ){
         Profesor miProfesor = null;
         List<Profesor> listaProfesores = getListaProfesores();
@@ -195,6 +212,9 @@ public class loginController {
        return jpaProfesor.findProfesorEntities();
    }
 
+     /*
+      Redirecciona al usuario a una url: direccion
+     */
     private void redirecciona(String direccion) {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest origRequest = (HttpServletRequest)context.getExternalContext().getRequest();
@@ -207,11 +227,15 @@ public class loginController {
     }
     }
     
+    
     private void muestraMensaje(String mensaje){
          FacesMessage mensajeFace = new FacesMessage(mensaje);
         RequestContext.getCurrentInstance().showMessageInDialog(mensajeFace);
     }
     
+    /*
+     * Hace logout borrando la sesion 
+     */
     public void logout() {
 	FacesContext context = FacesContext.getCurrentInstance();
     	context.getExternalContext().invalidateSession();
