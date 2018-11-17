@@ -4,8 +4,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import com.muyalware.biopractice.model.Administrador;
+import com.muyalware.biopractice.model.Alumno;
+import com.muyalware.biopractice.model.Profesor;
 import com.muyalware.biopractice.model.PersistenceUtil;
 import com.muyalware.biopractice.controller.AdministradorJpaController;
+import com.muyalware.biopractice.controller.AlumnoJpaController;
+import com.muyalware.biopractice.controller.ProfesorJpaController;
+
 import java.io.IOException;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -23,6 +28,10 @@ public class loginController {
     
     private final AdministradorJpaController jpa;
     
+    private final AlumnoJpaController jpaAlumno;
+    
+    private final ProfesorJpaController jpaProfesor;
+    
     private String correo;
     private String contra;
     private String estado;
@@ -32,6 +41,8 @@ public class loginController {
      */
     public loginController() {
         jpa = new AdministradorJpaController(PersistenceUtil.getEntityManagerFactory());
+        jpaAlumno = new AlumnoJpaController(PersistenceUtil.getEntityManagerFactory());
+        jpaProfesor = new ProfesorJpaController(PersistenceUtil.getEntityManagerFactory());
         this.estado = "no presionado";
     }
 
@@ -77,7 +88,51 @@ public class loginController {
             //System.out.println("inicio sesion");
             FacesContext context = FacesContext.getCurrentInstance();
             context.getExternalContext().getSessionMap().put("nombre", miAdmin.getCorreo());
-            redirecciona();
+            redirecciona("/faces/index.xhtml");
+          
+        }
+    }
+    
+    public void loginAlumno(){
+        
+        Alumno miAlumno = buscaAlumno();
+        if (miAlumno==null){
+            //System.out.println("no existe");
+            muestraMensaje("No existe usuario");
+            
+        } else if ( !contra.equals(miAlumno.getContrasena())){
+            
+            muestraMensaje("Contraseña incorrecta");
+            //System.out.println("contraseña incorrecta");
+        } else if ( contra.equals(miAlumno.getContrasena())){
+            
+            
+            //System.out.println("inicio sesion");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getSessionMap().put("alumno", miAlumno.getCorreo());
+            redirecciona("/faces/indexAlumno.xhtml");
+          
+        }
+    }
+    
+    public void loginProfesor(){
+        
+        Profesor miProfesor = buscaProfesor();
+        if (miProfesor==null){
+            //System.out.println("no existe");
+            muestraMensaje("No existe usuario");
+            
+        } else if ( !contra.equals(miProfesor.getContrasena())){
+            
+            muestraMensaje("Contraseña incorrecta");
+            //System.out.println("contraseña incorrecta");
+        } else if ( contra.equals(miProfesor.getContrasena())){
+            
+            
+            //System.out.println("inicio sesion");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getSessionMap().put("profesor", miProfesor.getCorreo());
+            redirecciona("/faces/indexProfesor.xhtml");
           
         }
     }
@@ -95,20 +150,58 @@ public class loginController {
             }
         }
         return miAdmin;
-        
     }
+    
+    public Alumno buscaAlumno( ){
+        Alumno miAlumno = null;
+        List<Alumno> listaAlumnos = getListaAlumnos();
+        
+        for (int i = 0; i < listaAlumnos.size(); i++){
+            if (listaAlumnos.get(i).getCorreo().equals(correo)){
+                miAlumno = listaAlumnos.get(i);
+                //miAdmin.setActivo(true);
+
+                //System.out.println("estoy probando" + name + " con " + )
+            }
+        }
+        return miAlumno;
+    }
+    
+    public Profesor buscaProfesor( ){
+        Profesor miProfesor = null;
+        List<Profesor> listaProfesores = getListaProfesores();
+        
+        for (int i = 0; i < listaProfesores.size(); i++){
+            if (listaProfesores.get(i).getCorreo().equals(correo)){
+                miProfesor = listaProfesores.get(i);
+                //miAdmin.setActivo(true);
+
+                //System.out.println("estoy probando" + name + " con " + )
+            }
+        }
+        return miProfesor;
+    }
+    
+    
     
     public List<Administrador> getRegistrados(){
        return jpa.findAdministradorEntities();
    }
+    
+     public List<Alumno> getListaAlumnos(){
+       return jpaAlumno.findAlumnoEntities();
+   }
+     public List<Profesor> getListaProfesores(){
+       return jpaProfesor.findProfesorEntities();
+   }
 
-    private void redirecciona() {
+    private void redirecciona(String direccion) {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest origRequest = (HttpServletRequest)context.getExternalContext().getRequest();
         String contextPath = origRequest.getContextPath();
     try {
         FacesContext.getCurrentInstance().getExternalContext()
-                .redirect(contextPath  + "/faces/index.xhtml");
+                .redirect(contextPath  + direccion);
     } catch (IOException e) {
         e.printStackTrace();
     }
