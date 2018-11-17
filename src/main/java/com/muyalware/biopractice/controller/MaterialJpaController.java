@@ -140,7 +140,7 @@ public class MaterialJpaController implements Serializable {
 		creada = true;
 		jpl = jpl + " WHERE m.id = " + Integer.toString(mat.getId());
 	    }
-	    if(!"".equals(mat.getNombre())){
+	    if(mat.getNombre() != ""){
 		if(creada){
 		    jpl = jpl + " AND m.nombre LIKE '%" + mat.getNombre() + "%'";
 		} else {
@@ -148,7 +148,7 @@ public class MaterialJpaController implements Serializable {
 		    jpl = jpl + " WHERE m.nombre LIKE '%" + mat.getNombre() + "%'";
 		}
 	    }
-	    if(!"".equals(mat.getDescripcion())){
+	    if(mat.getDescripcion() != ""){
 		if(creada){
 		    jpl = jpl + " AND m.descripcion LIKE '%" + mat.getDescripcion() + "%'";
 		} else {
@@ -156,9 +156,6 @@ public class MaterialJpaController implements Serializable {
 		    jpl = jpl + " WHERE m.descripcion LIKE '%" + mat.getDescripcion() + "%'";
 		}
 	    }
-<<<<<<< HEAD
-	    if(!"".equals(mat.getCategoria())){
-=======
 	    if(mat.getUnidades() != 0){
 		if(creada){
 		    jpl = jpl + " AND m.unidades = " + Integer.toString(mat.getUnidades());
@@ -168,7 +165,6 @@ public class MaterialJpaController implements Serializable {
 		}
 	    }
 	    if(mat.getCategoria() != ""){
->>>>>>> refs/remotes/origin/master
 		if(creada){
 		    jpl = jpl + " AND m.categoria LIKE '%" + mat.getCategoria() + "%'";
 		} else {
@@ -176,7 +172,7 @@ public class MaterialJpaController implements Serializable {
 		    jpl = jpl + " WHERE m.categoria LIKE '%" + mat.getCategoria() + "%'";
 		}
 	    }
-	    if(!"".equals(mat.getSubcategoria())){
+	    if(mat.getSubcategoria() != ""){
 		if(creada){
 		    jpl = jpl + " AND m.subcategoria LIKE '%" + mat.getSubcategoria() + "%'";
 		} else {
