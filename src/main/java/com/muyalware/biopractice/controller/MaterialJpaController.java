@@ -156,6 +156,14 @@ public class MaterialJpaController implements Serializable {
 		    jpl = jpl + " WHERE m.descripcion LIKE '%" + mat.getDescripcion() + "%'";
 		}
 	    }
+	    if(mat.getUnidades() != 0){
+		if(creada){
+		    jpl = jpl + " AND m.unidades = " + Integer.toString(mat.getUnidades());
+		} else {
+		    creada = true;
+		    jpl = jpl + " WHERE m.unidades = " + Integer.toString(mat.getUnidades());
+		}
+	    }
 	    if(mat.getCategoria() != ""){
 		if(creada){
 		    jpl = jpl + " AND m.categoria LIKE '%" + mat.getCategoria() + "%'";
