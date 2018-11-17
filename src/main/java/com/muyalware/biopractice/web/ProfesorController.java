@@ -22,13 +22,14 @@ public class ProfesorController {
     
     private ProfesorJpaController jpa;
     private Profesor profesor;
-    
+    private List<Profesor> lista;
     /**
      * Creates a new instance of ProfesorController
      */
     public ProfesorController() {
         jpa = new ProfesorJpaController(PersistenceUtil.getEntityManagerFactory());
         profesor = new Profesor();
+        lista = jpa.findProfesorEntities();
     }
         
     public Profesor getProfesor(){
@@ -39,10 +40,31 @@ public class ProfesorController {
         profesor = p;
     }
     
+    public List<Profesor> getLista(){
+            return lista;
+    }
+    
    public String addProfesor(){
        jpa.create(profesor);
        return "lista";
    }
+       public void guardar(){
+	jpa.guardar(profesor);
+        lista=jpa.findProfesorEntities();
+    }
+    public void modificar(){
+	jpa.modificar(profesor);
+        lista=jpa.findProfesorEntities();
+    }
+    public void eliminar(){
+	jpa.eliminar(profesor);
+        lista=jpa.findProfesorEntities();
+    }
+    public Profesor buscar(){
+	lista.clear();
+	lista = jpa.findProfesor(profesor);
+	return jpa.findProfesor(profesor.getId());
+    }
    
    public List<Profesor> getRegistrados(){
        return jpa.findProfesorEntities();

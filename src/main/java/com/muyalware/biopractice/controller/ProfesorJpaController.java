@@ -125,6 +125,47 @@ public class ProfesorJpaController implements Serializable {
         }
     }
 
+        public List<Profesor> findProfesor(Profesor mat){
+	EntityManager em = getEntityManager();
+	String jpl = "SELECT m FROM Profesor m";
+	boolean creada = false;
+	if(mat != null){
+	    if(mat.getId() != 0){
+		creada = true;
+		jpl = jpl + " WHERE m.id = " + Integer.toString(mat.getId());
+	    }
+	    if(!"".equals(mat.getNombre())){
+		if(creada){
+		    jpl = jpl + " AND m.nombre LIKE '%" + mat.getNombre() + "%'";
+		} else {
+		    creada = true;
+		    jpl = jpl + " WHERE m.nombre LIKE '%" + mat.getNombre() + "%'";
+		}
+	    }
+	    if(!"".equals(mat.getCorreo())){
+		if(creada){
+		    jpl = jpl + " AND m.correo LIKE '%" + mat.getCorreo() + "%'";
+		} else {
+		    creada = true;
+		    jpl = jpl + " WHERE m.correo LIKE '%" + mat.getCorreo()+ "%'";
+		}
+	    }
+            	    if(!"".equals(mat.getNumTrabajador())){
+		if(creada){
+		    jpl = jpl + " AND m.numTrabajador LIKE '%" + mat.getNumTrabajador()+ "%'";
+		} else {
+		    creada = true;
+		    jpl = jpl + " WHERE m.numTrabajador LIKE '%" + mat.getNumTrabajador()+ "%'";
+		}
+	    }
+            
+	}
+	Query query = em.createQuery(jpl);
+	return query.getResultList();
+    }
+    
+       
+    
     public int getProfesorCount() {
         EntityManager em = getEntityManager();
         try {
@@ -137,5 +178,37 @@ public class ProfesorJpaController implements Serializable {
             em.close();
         }
     }
+    
+    
+    public void guardar(Profesor profesor){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.persist(profesor);
+	em.getTransaction().commit();
+        em.close();
+    }
+   
+    public void modificar(Profesor profesor){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.merge(profesor);
+	em.getTransaction().commit();
+        em.close();
+    }
+    
+    public void eliminar(Profesor profesor){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.remove(em.merge(profesor));
+	em.getTransaction().commit();
+        em.close();
+    }
+    
+    
+    
+    
+    
+    
+    
     
 }
