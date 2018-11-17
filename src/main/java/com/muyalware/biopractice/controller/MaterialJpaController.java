@@ -156,11 +156,7 @@ public class MaterialJpaController implements Serializable {
 		    jpl = jpl + " WHERE m.descripcion LIKE '%" + mat.getDescripcion() + "%'";
 		}
 	    }
-<<<<<<< HEAD
 	    if(!"".equals(mat.getCategoria())){
-=======
-	    if(mat.getUnidades() != 0){
->>>>>>> refs/remotes/origin/master
 		if(creada){
 		    jpl = jpl + " AND m.unidades = " + Integer.toString(mat.getUnidades());
 		} else {
