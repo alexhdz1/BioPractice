@@ -42,10 +42,15 @@ public class AlumnoController {
         alumno = a;
     }
 
+    public List<Alumno> getLista(){
+            return lista;
+    }
+    
     public String addAlumno() {
         jpa.create(alumno);
         return "lista";
     }
+    
 
     public List<Alumno> getRegistrados() {
         return jpa.findAlumnoEntities();

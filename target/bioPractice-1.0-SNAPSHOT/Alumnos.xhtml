@@ -7,24 +7,23 @@
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:define name="content">
+    <ui:define name="content" >
         <div class="jumbotron" style="background-color:rgba(248,248,255,0.3) ">
+
             <h:form>
                 <h:panelGrid columns= "2">
                     <h:outputText value = "id" style="color: white "/>
                     <h:inputText id="alumno_id" value ="#{alumnoController.alumno.id}" />
                     <h:outputText value = "Nombre" style="color: white" />
-                    <h:inputText id="alumno_nombre" value ="#{alumnoController.alumno.nombre}" />
+                    <h:inputText id="profesor_nombre" value ="#{alumnoController.alumno.nombre}" />
                     <h:outputText  value = "Contraseña"  style="color: white "/>
-                    <h:inputText id="alumno_contrasena" value ="#{alumnoController.alumno.contrasena}" />
+                    <h:inputText id="profesor_contrasena" value ="#{alumnoController.alumno.contrasena}" />
                     <h:outputText value = "Correo" style="color: white" />
-                    <h:inputText id="alumno_correo" value ="#{alumnoController.alumno.correo}" />
+                    <h:inputText id="porfesor_correo" value ="#{alumnoController.alumno.correo}" />
                     <h:outputText value = "Numero de trabajador" style="color: white" />
-                    <h:inputText id="alumno_numCuenta" value ="#{alumnoController.alumno.numCuenta}" />
-                    <h:outputText value = "Bloqueado" style="color: white" />
-                    <h:selectOneMenu id="alumno_bloqueado" value="#{alumnoController.alumno.estado}">
-                    <h:outputText value = "Activo" style="color: white" />
-                    <h:selectOneMenu id="alumno_activo" value="#{alumnoController.alumno.activo}">
+                    <h:inputText id="porfesor_NumTrabajador" value ="#{alumnoController.alumno.numCuenta}" />
+                    <h:outputText value = "Estado" style="color: white" />
+                    <h:selectOneMenu id="material_prestado" value="#{alumnoController.alumno.estado}">
                         <f:selectItem itemLabel="true" itemValue="true"/>
                         <f:selectItem itemLabel="false" itemValue="false"/>
                     </h:selectOneMenu>
@@ -33,56 +32,30 @@
                 <h:commandButton value ="Guardar" class="btn btn-primary my-2 my-sm-0" action="#{alumnoController.guardar()}" />
                 <h:commandButton value ="Editar" class="btn btn-primary my-2 my-sm-0" action="#{alumnoController.modificar()}"/>
                 <h:commandButton value ="Eliminar" class="btn btn-danger my-2 my-sm-0" action="#{alumnoController.eliminar()}"/>
-                <p:dataTable id="datos" value="#{alumnoController.getLista()}" var="alu">
+                <p:dataTable id="datos" value="#{alumnoController.getLista()}" var="mat">
                     <p:column headerText="Id">
-                        <h:outputText value="#{alu.id}"/>
+                        <h:outputText value="#{mat.id}"/>
                     </p:column>
                     <p:column headerText="Nombre">
-                        <h:outputText value="#{alu.nombre}"/>
+                        <h:outputText value="#{mat.nombre}"/>
                     </p:column>
                     <p:column headerText="Correo">
-                        <h:outputText value="#{alu.correo}"/>
+                        <h:outputText value="#{mat.correo}"/>
                     </p:column>
                     <p:column headerText="Contraseña">
-                        <h:outputText value="#{alu.contrasena}"/>
+                        <h:outputText value="#{mat.contrasena}"/>
                     </p:column>
                     <p:column headerText="Numero de trabajador">
-                        <h:outputText value="#{alu.numTrabajador}"/>
+                        <h:outputText value="#{mat.numCuenta}"/>
                     </p:column>
                     <p:column headerText="Estado">
-                        <h:outputText value="#{alu.activo}"/>
+                        <h:outputText value="#{mat.estado}"/>
                     </p:column>
                 </p:dataTable>
             </h:form>
         </div>
     </ui:define>
 
+
 </ui:composition>
 
-
-<? 
-            <table class="table">
-              <thead class="thead-light">
-                <tr>
-                  <th scope="col">Id Material</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Categoria</th>
-                  <th scope="col">Subcategoria</th>
-                </tr>
-              </thead>
-              <tbody>
-                  <c:forEach var ="alumno" items="#{alumnoController.registrados}">
-                      <!--<tr>  <th scope="row">1</th> <td>${alumno.nombre} </td>></tr>-->
-                      <tr>
-                          <td><a href="#">${alumno.id} </a></td>
-                        <td>${alumno.nombre} </td>
-                        <td>${alumno.correo} </td>
-                        <td>${alumno.numCuenta} </td>
-                      </tr>
-                   </c:forEach>
-              </tbody>
-            </table>
-        </div>
-    </ui:define>
-
->

@@ -22,11 +22,6 @@
                     <h:inputText id="porfesor_correo" value ="#{profesorController.profesor.correo}" />
                     <h:outputText value = "Numero de trabajador" style="color: white" />
                     <h:inputText id="porfesor_NumTrabajador" value ="#{profesorController.profesor.numTrabajador}" />
-                    <h:outputText value = "Prestado" style="color: white" />
-                    <h:selectOneMenu id="material_prestado" value="#{profesorController.profesor.activo}">
-                        <f:selectItem itemLabel="true" itemValue="true"/>
-                        <f:selectItem itemLabel="false" itemValue="false"/>
-                    </h:selectOneMenu>
                 </h:panelGrid>
                 <h:commandButton value ="Buscar"  class="btn btn-primary my-2 my-sm-0" action="#{profesorController.buscar()}" />
                 <h:commandButton value ="Guardar" class="btn btn-primary my-2 my-sm-0" action="#{profesorController.guardar()}" />
@@ -47,9 +42,6 @@
                     </p:column>
                     <p:column headerText="Numero de trabajador">
                         <h:outputText value="#{mat.numTrabajador}"/>
-                    </p:column>
-                    <p:column headerText="Estado">
-                        <h:outputText value="#{mat.activo}"/>
                     </p:column>
                 </p:dataTable>
             </h:form>

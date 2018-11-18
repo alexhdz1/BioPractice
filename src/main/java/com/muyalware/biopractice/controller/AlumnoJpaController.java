@@ -155,21 +155,21 @@ public class AlumnoJpaController implements Serializable {
 		    jpl = jpl + " WHERE m.correo LIKE '%" + mat.getCorreo()+ "%'";
 		}
 	    }
-            	    if(!"".equals(mat.getNumCuenta())){
+            if(!"".equals(mat.getNumCuenta())){
 		if(creada){
-		    jpl = jpl + " AND m.numTrabajador LIKE '%" + mat.getNumCuenta()+ "%'";
+		    jpl = jpl + " AND m.numCuenta LIKE '%" + mat.getNumCuenta()+ "%'";
 		} else {
 		    creada = true;
-		    jpl = jpl + " WHERE m.numTrabajador LIKE '%" + mat.getNumCuenta()+ "%'";
+		    jpl = jpl + " WHERE m.numCuenta LIKE '%" + mat.getNumCuenta()+ "%'";
 		}
 	    }
             
                 if(!"".equals(mat.getEstado())){
 		if(creada){
-		    jpl = jpl + " AND m.estado LIKE '%" + mat.getEstado()+ "%'";
+		    jpl = jpl + " AND m.estado = " + mat.getEstado();
 		} else {
 		    creada = true;
-		    jpl = jpl + " WHERE m.estado LIKE '%" + mat.getEstado()+ "%'";
+		    jpl = jpl + " WHERE m.estado = " + mat.getEstado();
 		}
 	    }
                     
