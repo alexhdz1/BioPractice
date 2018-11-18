@@ -24,13 +24,14 @@ public class AlumnoController {
 
     private Alumno alumno;
     private final AlumnoJpaController jpa;
-
+    private List<Alumno> lista;
     /**
      * Creates a new instance of AlumnoController
      */
     public AlumnoController() {
         jpa = new AlumnoJpaController(PersistenceUtil.getEntityManagerFactory());
         alumno = new Alumno();
+        lista = jpa.findAlumnoEntities();
     }
 
     public Alumno getAlumno() {
@@ -49,5 +50,23 @@ public class AlumnoController {
     public List<Alumno> getRegistrados() {
         return jpa.findAlumnoEntities();
     }
-
+    
+       public void guardar(){
+	jpa.guardar(alumno);
+        lista=jpa.findAlumnoEntities();
+    }
+    public void modificar(){
+	jpa.modificar(alumno);
+        lista=jpa.findAlumnoEntities();
+    }
+    public void eliminar(){
+	jpa.eliminar(alumno);
+        lista=jpa.findAlumnoEntities();
+    }
+    public Alumno buscar(){
+	lista.clear();
+	lista = jpa.findAlumno(alumno);
+	return jpa.findAlumno(alumno.getId());
+    }
+    
 }
