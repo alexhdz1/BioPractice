@@ -8,6 +8,7 @@ package com.muyalware.biopractice.controller;
 import com.muyalware.biopractice.controller.exceptions.exceptions.IllegalOrphanException;
 import com.muyalware.biopractice.controller.exceptions.exceptions.NonexistentEntityException;
 import com.muyalware.biopractice.model.Alumno;
+import com.muyalware.biopractice.model.Alumno_;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -97,6 +98,7 @@ public class AlumnoJpaController implements Serializable {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
             cq.select(cq.from(Alumno.class));
             Query q = em.createQuery(cq);
+            cq.orderBy(em.getCriteriaBuilder().asc(cq.from(Alumno.class).get(Alumno_.id)));
             if (!all) {
                 q.setMaxResults(maxResults);
                 q.setFirstResult(firstResult);

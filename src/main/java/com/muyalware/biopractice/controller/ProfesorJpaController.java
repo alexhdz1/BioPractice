@@ -13,6 +13,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import com.muyalware.biopractice.model.Profesor;
+import com.muyalware.biopractice.model.Profesor_;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -104,6 +105,7 @@ public class ProfesorJpaController implements Serializable {
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
             cq.select(cq.from(Profesor.class));
+            cq.orderBy(em.getCriteriaBuilder().asc(cq.from(Profesor.class).get(Profesor_.id)));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);

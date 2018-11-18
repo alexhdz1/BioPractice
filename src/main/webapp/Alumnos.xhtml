@@ -29,7 +29,7 @@
                     </h:selectOneMenu>
                 </h:panelGrid>
                 <h:commandButton value ="Buscar"  class="btn btn-primary my-2 my-sm-0" action="#{alumnoController.buscar()}" />
-                <h:commandButton value ="Guardar" class="btn btn-primary my-2 my-sm-0" action="#{alumnoController.guardar()}" />
+                <h:commandButton value ="Guardar" class="btn btn-primary my-2 my-sm-0" action="#{alumnoController.guardarAlumno()}" />
                 <h:commandButton value ="Editar" class="btn btn-primary my-2 my-sm-0" action="#{alumnoController.modificar()}"/>
                 <h:commandButton value ="Eliminar" class="btn btn-danger my-2 my-sm-0" action="#{alumnoController.eliminar()}"/>
                 <p:dataTable id="datos" value="#{alumnoController.getLista()}" var="mat">

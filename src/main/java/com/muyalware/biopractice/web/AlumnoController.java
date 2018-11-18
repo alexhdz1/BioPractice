@@ -13,6 +13,9 @@ import javax.faces.bean.RequestScoped;
 import com.muyalware.biopractice.model.Alumno;
 import com.muyalware.biopractice.model.PersistenceUtil;
 import com.muyalware.biopractice.controller.AlumnoJpaController;
+import javax.faces.application.FacesMessage;
+import org.primefaces.context.RequestContext;
+import java.util.regex.*;
 
 /**
  *
@@ -56,9 +59,35 @@ public class AlumnoController {
         return jpa.findAlumnoEntities();
     }
     
-       public void guardar(){
-	jpa.guardar(alumno);
+    public void guardarAlumno(){
+        jpa.guardar(alumno);
         lista=jpa.findAlumnoEntities();
+    }
+    
+    public boolean registrarAlumno(){
+        String ePattern = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@ciencias.unam.mx";
+        Pattern pattern = Pattern.compile(ePattern);
+        String correo = alumno.getCorreo();
+	if(alumno.getCorreo() != null) {
+            Matcher matcher = pattern.matcher(correo);
+            if(matcher.matches()) {
+                jpa.guardar(alumno);
+                lista=jpa.findAlumnoEntities();
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public void registra(){
+        if(!registrarAlumno()){
+            muestraMensaje("La cuenta de correo no es valida");
+        } 
+    }
+
+    private void muestraMensaje(String mensaje){
+         FacesMessage mensajeFace = new FacesMessage(mensaje);
+        RequestContext.getCurrentInstance().showMessageInDialog(mensajeFace);
     }
     public void modificar(){
 	jpa.modificar(alumno);
