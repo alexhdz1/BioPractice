@@ -22,9 +22,7 @@
                     <h:outputText value = "Numero de trabajador" style="color: white" />
                     <h:inputText id="alumno_numCuenta" value ="#{alumnoController.alumno.numCuenta}" />
                     <h:outputText value = "Bloqueado" style="color: white" />
-                    <h:inputText id="alumno_bloqueado" value="#{alumnoController.alumno.estado}">
-                    <h:outputText value = "Activo" style="color: white" />
-                    <h:selectOneMenu id="alumno_activo" value="#{alumnoController.alumno.activo}">
+                    <h:selectOneMenu id="alumno_bloqueado" value="#{alumnoController.alumno.estado}">
                         <f:selectItem itemLabel="true" itemValue="true"/>
                         <f:selectItem itemLabel="false" itemValue="false"/>
                     </h:selectOneMenu>
@@ -33,7 +31,7 @@
                 <h:commandButton value ="Guardar" class="btn btn-primary my-2 my-sm-0" action="#{alumnoController.guardar()}" />
                 <h:commandButton value ="Editar" class="btn btn-primary my-2 my-sm-0" action="#{alumnoController.modificar()}"/>
                 <h:commandButton value ="Eliminar" class="btn btn-danger my-2 my-sm-0" action="#{alumnoController.eliminar()}"/>
-                <p:dataTable id="datos" value="#{alumnoController.getLista()}" var="alu">
+                <p:dataTable id="datos" value="#{AlumnoController.getLista()}" var="alu">
                     <p:column headerText="Id">
                         <h:outputText value="#{alu.id}"/>
                     </p:column>
@@ -47,10 +45,10 @@
                         <h:outputText value="#{alu.contrasena}"/>
                     </p:column>
                     <p:column headerText="Numero de trabajador">
-                        <h:outputText value="#{alu.numTrabajador}"/>
+                        <h:outputText value="#{alu.numCuenta}"/>
                     </p:column>
                     <p:column headerText="Estado">
-                        <h:outputText value="#{alu.activo}"/>
+                        <h:outputText value="#{alu.estado}"/>
                     </p:column>
                 </p:dataTable>
             </h:form>
