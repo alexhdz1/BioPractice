@@ -105,3 +105,15 @@
 127.0.0.1 - - [17/Nov/2018:19:09:46 -0600] "GET /bioPractice/faces/javax.faces.resource/bootstrap/4.0.0-2/css/bootstrap.min-jsf.css?ln=webjars HTTP/1.1" 304 - http-bio-8080-exec-9 1
 127.0.0.1 - - [17/Nov/2018:19:09:46 -0600] "GET /bioPractice/faces/javax.faces.resource/jquery/3.3.1-1/jquery.min.js?ln=webjars HTTP/1.1" 304 - http-bio-8080-exec-5 1
 127.0.0.1 - - [17/Nov/2018:19:09:46 -0600] "GET /bioPractice/faces/javax.faces.resource/bootstrap/4.0.0-2/js/bootstrap.min.js?ln=webjars HTTP/1.1" 304 - http-bio-8080-exec-8 2
+127.0.0.1 - - [17/Nov/2018:19:16:31 -0600] "GET /bioPractice/faces/Alumnos.xhtml HTTP/1.1" 500 14268 http-bio-8080-exec-1 357
+127.0.0.1 - - [17/Nov/2018:19:17:15 -0600] "GET /bioPractice/faces/Alumnos.xhtml HTTP/1.1" 200 22622 http-bio-8080-exec-1 1917
+127.0.0.1 - - [17/Nov/2018:19:17:15 -0600] "GET /bioPractice/faces/javax.faces.resource/theme.css?ln=primefaces-aristo HTTP/1.1" 304 - http-bio-8080-exec-2 6
+127.0.0.1 - - [17/Nov/2018:19:17:15 -0600] "GET /bioPractice/faces/javax.faces.resource/bootstrap/4.0.0-2/css/bootstrap.min-jsf.css?ln=webjars HTTP/1.1" 304 - http-bio-8080-exec-3 3
+127.0.0.1 - - [17/Nov/2018:19:17:15 -0600] "GET /bioPractice/faces/javax.faces.resource/components.css?ln=primefaces&v=6.0 HTTP/1.1" 304 - http-bio-8080-exec-4 14
+127.0.0.1 - - [17/Nov/2018:19:17:15 -0600] "GET /bioPractice/faces/javax.faces.resource/jquery/jquery.js?ln=primefaces&v=6.0 HTTP/1.1" 304 - http-bio-8080-exec-5 3
+127.0.0.1 - - [17/Nov/2018:19:17:15 -0600] "GET /bioPractice/faces/javax.faces.resource/jquery/jquery-plugins.js?ln=primefaces&v=6.0 HTTP/1.1" 304 - http-bio-8080-exec-6 2
+127.0.0.1 - - [17/Nov/2018:19:17:15 -0600] "GET /bioPractice/faces/javax.faces.resource/core.js?ln=primefaces&v=6.0 HTTP/1.1" 304 - http-bio-8080-exec-8 10
+127.0.0.1 - - [17/Nov/2018:19:17:15 -0600] "GET /bioPractice/faces/javax.faces.resource/components.js?ln=primefaces&v=6.0 HTTP/1.1" 304 - http-bio-8080-exec-9 10
+127.0.0.1 - - [17/Nov/2018:19:17:15 -0600] "GET /bioPractice/faces/javax.faces.resource/jquery/3.3.1-1/jquery.min.js?ln=webjars HTTP/1.1" 304 - http-bio-8080-exec-10 12
+127.0.0.1 - - [17/Nov/2018:19:17:15 -0600] "GET /bioPractice/faces/javax.faces.resource/bootstrap/4.0.0-2/js/bootstrap.min.js?ln=webjars HTTP/1.1" 304 - http-bio-8080-exec-7 4
+127.0.0.1 - - [17/Nov/2018:19:17:15 -0600] "GET /bioPractice/faces/images/fondo.jpg HTTP/1.1" 304 - http-bio-8080-exec-3 29

@@ -21,15 +21,9 @@
                     <h:outputText value = "Correo" style="color: white" />
                     <h:inputText id="porfesor_correo" value ="#{alumnoController.alumno.correo}" />
                     <h:outputText value = "Numero de trabajador" style="color: white" />
-<<<<<<< HEAD
                     <h:inputText id="porfesor_NumTrabajador" value ="#{alumnoController.alumno.numCuenta}" />
                     <h:outputText value = "Estado" style="color: white" />
                     <h:selectOneMenu id="material_prestado" value="#{alumnoController.alumno.estado}">
-=======
-                    <h:inputText id="alumno_numCuenta" value ="#{alumnoController.alumno.numCuenta}" />
-                    <h:outputText value = "Bloqueado" style="color: white" />
-                    <h:selectOneMenu id="alumno_bloqueado" value="#{alumnoController.alumno.estado}">
->>>>>>> 3895357137364ecf733945f7da0eca8c58cb5736
                         <f:selectItem itemLabel="true" itemValue="true"/>
                         <f:selectItem itemLabel="false" itemValue="false"/>
                     </h:selectOneMenu>
@@ -38,11 +32,7 @@
                 <h:commandButton value ="Guardar" class="btn btn-primary my-2 my-sm-0" action="#{alumnoController.guardar()}" />
                 <h:commandButton value ="Editar" class="btn btn-primary my-2 my-sm-0" action="#{alumnoController.modificar()}"/>
                 <h:commandButton value ="Eliminar" class="btn btn-danger my-2 my-sm-0" action="#{alumnoController.eliminar()}"/>
-<<<<<<< HEAD
                 <p:dataTable id="datos" value="#{alumnoController.getLista()}" var="mat">
-=======
-                <p:dataTable id="datos" value="#{AlumnoController.getLista()}" var="alu">
->>>>>>> 3895357137364ecf733945f7da0eca8c58cb5736
                     <p:column headerText="Id">
                         <h:outputText value="#{mat.id}"/>
                     </p:column>
@@ -56,27 +46,16 @@
                         <h:outputText value="#{mat.contrasena}"/>
                     </p:column>
                     <p:column headerText="Numero de trabajador">
-<<<<<<< HEAD
                         <h:outputText value="#{mat.numCuenta}"/>
                     </p:column>
                     <p:column headerText="Estado">
                         <h:outputText value="#{mat.estado}"/>
-=======
-                        <h:outputText value="#{alu.numCuenta}"/>
-                    </p:column>
-                    <p:column headerText="Estado">
-                        <h:outputText value="#{alu.estado}"/>
->>>>>>> 3895357137364ecf733945f7da0eca8c58cb5736
                     </p:column>
                 </p:dataTable>
             </h:form>
         </div>
     </ui:define>
-<<<<<<< HEAD
 
 
 </ui:composition>
 
-=======
-</ui:composition>
->>>>>>> 3895357137364ecf733945f7da0eca8c58cb5736
