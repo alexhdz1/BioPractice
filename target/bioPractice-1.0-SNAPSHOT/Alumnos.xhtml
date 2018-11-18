@@ -22,7 +22,7 @@
                     <h:outputText value = "Numero de trabajador" style="color: white" />
                     <h:inputText id="alumno_numCuenta" value ="#{alumnoController.alumno.numCuenta}" />
                     <h:outputText value = "Bloqueado" style="color: white" />
-                    <h:selectOneMenu id="alumno_bloqueado" value="#{alumnoController.alumno.estado}">
+                    <h:inputText id="alumno_bloqueado" value="#{alumnoController.alumno.estado}">
                     <h:outputText value = "Activo" style="color: white" />
                     <h:selectOneMenu id="alumno_activo" value="#{alumnoController.alumno.activo}">
                         <f:selectItem itemLabel="true" itemValue="true"/>
@@ -56,33 +56,4 @@
             </h:form>
         </div>
     </ui:define>
-
 </ui:composition>
-
-
-<? 
-            <table class="table">
-              <thead class="thead-light">
-                <tr>
-                  <th scope="col">Id Material</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Categoria</th>
-                  <th scope="col">Subcategoria</th>
-                </tr>
-              </thead>
-              <tbody>
-                  <c:forEach var ="alumno" items="#{alumnoController.registrados}">
-                      <!--<tr>  <th scope="row">1</th> <td>${alumno.nombre} </td>></tr>-->
-                      <tr>
-                          <td><a href="#">${alumno.id} </a></td>
-                        <td>${alumno.nombre} </td>
-                        <td>${alumno.correo} </td>
-                        <td>${alumno.numCuenta} </td>
-                      </tr>
-                   </c:forEach>
-              </tbody>
-            </table>
-        </div>
-    </ui:define>
-
->
