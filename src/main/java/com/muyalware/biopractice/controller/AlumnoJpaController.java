@@ -13,8 +13,6 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import com.muyalware.biopractice.model.Material;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -130,5 +128,95 @@ public class AlumnoJpaController implements Serializable {
             em.close();
         }
     }
+    
+   
+        public List<Alumno> findAlumno(Alumno mat){
+	EntityManager em = getEntityManager();
+	String jpl = "SELECT m FROM Alumno m";
+	boolean creada = false;
+	if(mat != null){
+	    if(mat.getId() != 0){
+		creada = true;
+		jpl = jpl + " WHERE m.id = " + Integer.toString(mat.getId());
+	    }
+	    if(!"".equals(mat.getNombre())){
+		if(creada){
+		    jpl = jpl + " AND m.nombre LIKE '%" + mat.getNombre() + "%'";
+		} else {
+		    creada = true;
+		    jpl = jpl + " WHERE m.nombre LIKE '%" + mat.getNombre() + "%'";
+		}
+	    }
+	    if(!"".equals(mat.getCorreo())){
+		if(creada){
+		    jpl = jpl + " AND m.correo LIKE '%" + mat.getCorreo() + "%'";
+		} else {
+		    creada = true;
+		    jpl = jpl + " WHERE m.correo LIKE '%" + mat.getCorreo()+ "%'";
+		}
+	    }
+            	    if(!"".equals(mat.getNumCuenta())){
+		if(creada){
+		    jpl = jpl + " AND m.numTrabajador LIKE '%" + mat.getNumCuenta()+ "%'";
+		} else {
+		    creada = true;
+		    jpl = jpl + " WHERE m.numTrabajador LIKE '%" + mat.getNumCuenta()+ "%'";
+		}
+	    }
+            
+                if(!"".equals(mat.getEstado())){
+		if(creada){
+		    jpl = jpl + " AND m.estado LIKE '%" + mat.getEstado()+ "%'";
+		} else {
+		    creada = true;
+		    jpl = jpl + " WHERE m.estado LIKE '%" + mat.getEstado()+ "%'";
+		}
+	    }
+                    
+                    
+                    
+	}
+	Query query = em.createQuery(jpl);
+	return query.getResultList();
+    }
+    
+       
+    public void guardar(Alumno alumno){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.persist(alumno);
+	em.getTransaction().commit();
+        em.close();
+    }
+   
+    public void modificar(Alumno alumno){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.merge(alumno);
+	em.getTransaction().commit();
+        em.close();
+    }
+    
+    public void eliminar(Alumno alumno){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.remove(em.merge(alumno));
+	em.getTransaction().commit();
+        em.close();
+    }
+    
+    
+    
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
