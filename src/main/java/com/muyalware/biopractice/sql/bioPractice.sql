@@ -2,7 +2,8 @@ DROP TABLE IF EXISTS kit, administrador, alumno, profesor, material;
 
 CREATE TABLE kit(
   id serial               primary key       not null,
-  fecha_Vencimiento       TIMESTAMP
+  fecha_Vencimiento       TIMESTAMP,
+  lista_materiales        int []
 );
 
 CREATE TABLE administrador(
@@ -30,7 +31,7 @@ CREATE TABLE alumno(
   contrasena              text              not null,
   num_cuenta              text              not null,
   estado                  boolean           not null,
-  fotografia              bytea             not null,
+  fotografia              bytea,
   activo                  boolean           not null
 );
 
@@ -42,7 +43,7 @@ CREATE TABLE material(
   prestado                boolean           not null,
   categoria               text              not null,
   subCategoria            text              not null,
-  fotografia              bytea             not null,
+  fotografia              bytea
   
 );
 
@@ -111,9 +112,6 @@ insert into Administrador (id, nombre, correo, contrasena, activo) values (1, 'J
 insert into Administrador (id, nombre, correo, contrasena, activo) values (2, 'Norah Bew', 'intranet@ciencias.unam.mx', 'EIsNFw', false);
 insert into Administrador (id, nombre, correo, contrasena, activo) values (3, 'Mellie Dwane', 'Mandatory@ciencias.unam.mx', 's0keKR', false);
 
-insert into Kit (id, fecha_Vencimiento) values (1, null);
-insert into Kit (id, fecha_Vencimiento) values (2, null);
-
 insert into material (id, nombre, descripcion, unidades, prestado, categoria, subcategoria, fotografia) values (1, 'Y-Solowarm', 'potassium chloride', 10,true, 'Potassium Chloride', 'Watson Pharma, Inc.', '#46e582');
 insert into material (id, nombre, descripcion, unidades, prestado, categoria, subcategoria, fotografia) values (2, 'Zamit', 'Sodium Fluoride', 5, false, 'Gelato APF', 'Mycone Dental Supply Co..', '#d849ca');
 insert into material (id, nombre, descripcion, unidades, prestado, categoria, subcategoria, fotografia) values (3, 'Flowdesk', 'PROMETHAZINE HYDROCHLORIDE, PHENYLEPHRINE HYDROCHLORIDE AND CODEINE PHOSPHATE', 3, true, 'PROMETHAZINE VC WITH CODEINE', 'Actavis Mid Atlantic LLC', '#265a59');
@@ -124,5 +122,3 @@ insert into material (id, nombre, descripcion, unidades, prestado, categoria, su
 insert into material (id, nombre, descripcion, unidades, prestado, categoria, subcategoria, fotografia) values (8, 'Job', 'ALCOHOL', 1, false, 'Lemon Verbena Waterless Hand Wash', 'Mangiacotti Floral LLC', '#f2f22c');
 insert into material (id, nombre, descripcion, unidades, prestado, categoria, subcategoria, fotografia) values (9, 'Veribet', 'Black Walnut', 4, false, 'Black Walnut', 'Antigen Laboratories, Inc.', '#4cd2a5');
 insert into material (id, nombre, descripcion, unidades, prestado, categoria, subcategoria, fotografia) values (10, 'Tempsoft', 'zaleplon', 19, false, 'Zaleplon', 'Upsher-Smith Laboratories, Inc.', '#30f6bf');
-
-ALTER TABLE material DROP CONSTRAINT profepk;
