@@ -2,6 +2,7 @@ com/muyalware/biopractice/controller/AdministradorJpaController.class
 com/muyalware/biopractice/controller/exceptions/exceptions/PreexistingEntityException.class
 com/muyalware/biopractice/controller/IllegalOrphanException.class
 com/muyalware/biopractice/web/loginController.class
+com/muyalware/biopractice/lib/Mailer.class
 com/muyalware/biopractice/web/AlumnoController.class
 com/muyalware/biopractice/controller/exceptions/exceptions/IllegalOrphanException.class
 com/muyalware/biopractice/model/Profesor_.class

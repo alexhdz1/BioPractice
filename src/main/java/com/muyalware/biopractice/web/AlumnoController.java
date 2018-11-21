@@ -9,10 +9,10 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-
 import com.muyalware.biopractice.model.Alumno;
 import com.muyalware.biopractice.model.PersistenceUtil;
 import com.muyalware.biopractice.controller.AlumnoJpaController;
+import com.muyalware.biopractice.lib.Mailer;
 import javax.faces.application.FacesMessage;
 import org.primefaces.context.RequestContext;
 import java.util.regex.*;
@@ -73,6 +73,8 @@ public class AlumnoController {
             if(matcher.matches()) {
                 jpa.guardar(alumno);
                 lista=jpa.findAlumnoEntities();
+		String [] params = {"biopractice20191@gmail.com","Biopractice1234",alumno.getCorreo(),"smtp.gmail.com","587","Confirma tu correo","<a href='localhost:8080/biopractice'></a>"};
+		new Mailer().envia(params);
                 return true;
             }
         }
