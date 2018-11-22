@@ -1,10 +1,11 @@
 package com.muyalware.biopractice.lib;
 
 import java.util.Properties;
-import javax.mail.*;
 import javax.activation.*;
-import javax.mail.internet.InternetAddress;
+import javax.mail.*;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.InternetAddress;
+
 public class Mailer{
     /**
      * agrs[0] remitente - direccion de la cual se va a enviar el correo
@@ -40,7 +41,7 @@ public class Mailer{
 
             // Lo enviamos.
 	    Transport t = session.getTransport("smtp");
-            t.connect(args[0], args[1]);
+            t.connect("biopractice20191@gmail.com", "Biopractice1234");
             t.sendMessage(message, message.getAllRecipients());
 
             // Cierre.
