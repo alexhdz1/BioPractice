@@ -13,6 +13,7 @@ import com.muyalware.biopractice.model.Alumno;
 import com.muyalware.biopractice.model.PersistenceUtil;
 import com.muyalware.biopractice.controller.AlumnoJpaController;
 import com.muyalware.biopractice.lib.Mailer;
+import java.util.ArrayList;
 import javax.faces.application.FacesMessage;
 import org.primefaces.context.RequestContext;
 import java.util.regex.*;
@@ -67,19 +68,28 @@ public class AlumnoController {
     public boolean registrarAlumno(){
         String ePattern = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@ciencias.unam.mx";
         Pattern pattern = Pattern.compile(ePattern);
-        String correo = alumno.getCorreo();
-	if(alumno.getCorreo() != null) {
-            Matcher matcher = pattern.matcher(correo);
-            if(matcher.matches()) {
-                jpa.guardar(alumno);
-                lista=jpa.findAlumnoEntities();
-		String [] params = {"biopractice20191@gmail.com","Biopractice1234",alumno.getCorreo(),"smtp.gmail.com","587","Confirma tu correo","<a href='localhost:8080/biopractice'></a>"};
-		new Mailer().envia(params);
-                return true;
+        String correo = alumno.getCorreo();        
+        if(!correoExistente(correo)){
+            if(alumno.getCorreo() != null ) {
+                Matcher matcher = pattern.matcher(correo);
+                if(matcher.matches()) {
+                    jpa.guardar(alumno);
+                    lista=jpa.findAlumnoEntities();
+                    String [] params = {"biopractice20191@gmail.com","Biopractice1234",alumno.getCorreo(),"smtp.gmail.com","587","Confirma tu correo","<a href='localhost:8080/biopractice'></a>"};
+                    new Mailer().envia(params);
+                    return true;
+                }
+
+
             }
         }
         return false;
     }
+    
+    
+    
+    
+    
     
     public void registra(){
         if(!registrarAlumno()){
@@ -104,5 +114,29 @@ public class AlumnoController {
 	lista = jpa.findAlumno(alumno);
 	return jpa.findAlumno(alumno.getId());
     }
+    
+    public List<String> getCorreos(){
+        
+        List<String> correosList = new ArrayList<>(); 
+       
+        for(Alumno alumn : lista ){
+            correosList.add(alumn.getCorreo());
+        }
+        
+        return correosList;  
+    }
+    
+    public boolean correoExistente(String correo){
+        
+        List<String> correos = getCorreos();
+        
+        for(String email: correos){
+            if(correo.equals(email)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     
 }
