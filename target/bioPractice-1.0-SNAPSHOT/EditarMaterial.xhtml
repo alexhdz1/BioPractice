@@ -18,16 +18,15 @@
                     <h:inputText id="material_nombre" value ="#{materialController.material.nombre}" />
                     <h:outputText  value = "Descripcion"  style="color: white "/>
                     <h:inputText id="material_descripcion" value ="#{materialController.material.descripcion}" />
-                    <h:outputText value = "Unidades" style="color: white" />
-                    <h:inputText id="material_unidades" value ="#{materialController.material.unidades}" />
                     <h:outputText value = "Categoria" style="color: white" />
                     <h:inputText id="material_categoria" value ="#{materialController.material.categoria}" />
                     <h:outputText value = "Subcategoria" style="color: white" />
                     <h:inputText id="material_subcategoria" value ="#{materialController.material.subcategoria}" />
-                    <h:outputText value = "Prestado" style="color: white" />
+                    <h:outputText value = "Estado" style="color: white" />
                     <h:selectOneMenu id="material_prestado" value="#{materialController.material.prestado}">
-                        <f:selectItem itemLabel="true" itemValue="true"/>
-                        <f:selectItem itemLabel="false" itemValue="false"/>
+                        <f:selectItem itemLabel="Disponible" itemValue="true"/>
+                        <f:selectItem itemLabel="Prestado" itemValue="false"/>
+                        <f:selectItem itemLabel="Mantenimiento" itemValue="false"/>
                     </h:selectOneMenu>
                 </h:panelGrid>
                 <h:commandButton value ="Buscar"  class="btn btn-primary my-2 my-sm-0" action="#{materialController.buscar()}" />
@@ -43,9 +42,6 @@
                     </p:column>
                     <p:column headerText="Descripcion">
                         <h:outputText value="#{mat.descripcion}"/>
-                    </p:column>
-                    <p:column headerText="Unidades">
-                        <h:outputText value="#{mat.unidades}"/>
                     </p:column>
                     <p:column headerText="Prestado">
                         <h:outputText value="#{mat.prestado}"/>
