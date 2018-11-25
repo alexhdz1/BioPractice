@@ -13,10 +13,13 @@ import com.muyalware.biopractice.model.Alumno;
 import com.muyalware.biopractice.model.PersistenceUtil;
 import com.muyalware.biopractice.controller.AlumnoJpaController;
 import com.muyalware.biopractice.lib.Mailer;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.faces.application.FacesMessage;
 import org.primefaces.context.RequestContext;
 import java.util.regex.*;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -77,6 +80,7 @@ public class AlumnoController {
                     lista=jpa.findAlumnoEntities();
                     String [] params = {"biopractice20191@gmail.com","Biopractice1234",alumno.getCorreo(),"smtp.gmail.com","587","Confirma tu correo","<a href='localhost:8080/biopractice'></a>"};
                     new Mailer().envia(params);
+                    redirecciona("/faces/login.xhtml");
                     return true;
                 }
 
@@ -86,11 +90,20 @@ public class AlumnoController {
         return false;
     }
     
-    
-    
-    
-    
-    
+    /*
+      Redirecciona al usuario a una url: direccion
+     */
+    private void redirecciona(String direccion) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest origRequest = (HttpServletRequest)context.getExternalContext().getRequest();
+        String contextPath = origRequest.getContextPath();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext()
+                    .redirect(contextPath  + direccion);
+        } catch (IOException e) {
+            e.printStackTrace();
+            }
+    }
     public void registra(){
         if(!registrarAlumno()){
             muestraMensaje("La cuenta de correo no es valida");

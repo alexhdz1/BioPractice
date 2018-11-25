@@ -41,6 +41,7 @@ public class FiltroController implements Filter {
 			if (reqURI.indexOf("/login.xhtml") >= 0
 					|| estaPermitida(ses, reqURI)
 					|| reqURI.indexOf("/public/") >= 0
+                                        || reqURI.indexOf("/RegistroAlumnos.xhtml") >= 0    
 					|| reqURI.contains("javax.faces.resource"))
 				chain.doFilter(request, response);
 			else
