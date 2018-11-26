@@ -5,7 +5,7 @@
  */
 package com.muyalware.biopractice.controller;
 
-import com.muyalware.biopractice.controller.exceptions.exceptions.NonexistentEntityException;
+import com.muyalware.biopractice.controller.exceptions.NonexistentEntityException;
 import com.muyalware.biopractice.model.Kit;
 import java.io.Serializable;
 import java.util.List;

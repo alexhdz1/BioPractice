@@ -30,7 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Kit.findAll", query = "SELECT k FROM Kit k")
     , @NamedQuery(name = "Kit.findById", query = "SELECT k FROM Kit k WHERE k.id = :id")
-    , @NamedQuery(name = "Kit.findByFechaVencimiento", query = "SELECT k FROM Kit k WHERE k.fechaVencimiento = :fechaVencimiento")})
+    , @NamedQuery(name = "Kit.findByFechaVencimiento", query = "SELECT k FROM Kit k WHERE k.fechaVencimiento = :fechaVencimiento")
+    , @NamedQuery(name = "Kit.findByListaMateriales", query = "SELECT k FROM Kit k WHERE k.listaMateriales = :listaMateriales")})
 public class Kit implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +43,8 @@ public class Kit implements Serializable {
     @Column(name = "fecha_vencimiento")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaVencimiento;
+    @Column(name = "lista_materiales")
+    private Serializable listaMateriales;
 
     public Kit() {
     }
@@ -64,6 +67,14 @@ public class Kit implements Serializable {
 
     public void setFechaVencimiento(Date fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
+    }
+
+    public Serializable getListaMateriales() {
+        return listaMateriales;
+    }
+
+    public void setListaMateriales(Serializable listaMateriales) {
+        this.listaMateriales = listaMateriales;
     }
 
     @Override
