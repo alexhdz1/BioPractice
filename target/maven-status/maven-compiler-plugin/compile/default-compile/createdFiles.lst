@@ -24,8 +24,8 @@ com/muyalware/biopractice/controller/AlumnoJpaController.class
 com/muyalware/biopractice/model/Kit.class
 com/muyalware/biopractice/controller/KitJpaController.class
 com/muyalware/biopractice/model/Material.class
-com/muyalware/biopractice/web/KitController.class
 com/muyalware/biopractice/web/ProfesorController.class
+com/muyalware/biopractice/web/KitController.class
 com/muyalware/biopractice/controller/MaterialJpaController.class
 com/muyalware/biopractice/web/EditarMaterialController.class
 com/muyalware/biopractice/controller/exceptions/exceptions/NonexistentEntityException.class

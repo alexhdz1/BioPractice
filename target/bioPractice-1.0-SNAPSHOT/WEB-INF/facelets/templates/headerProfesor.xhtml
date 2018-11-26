@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <nav class="navbar navbar-expand-md navbar-light  fixed-top" style="background-color:lightgray;">
+    <a class="navbar-brand" href="faces/index.xhtml">BioPractice</a>
+    
+    <a class="nav-link" href="faces/EditarMaterial.xhtml" style="color:black">Material<span class="sr-only">(current)</span></a>    
+    
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <div class="navbar-nav ml-auto">
+            <div class="my-2 my-lg-0">           
+            </div>
+            
+            <div class ="my-2 my-lg-0">
+              <h:form id="exit">
+                <h:commandButton action="#{loginController.logout()}"
+                                 
+                               value="Cerrar Sesión"
+                               class="btn btn-outline-success my-2 my-sm-0"
+                               style="height:48px;"/>
+              </h:form>
+            </div>
+      </div>
+    </div>
+  </nav>
+</ui:composition>
