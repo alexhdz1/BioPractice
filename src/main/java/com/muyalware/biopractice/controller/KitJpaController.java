@@ -135,4 +135,30 @@ public class KitJpaController implements Serializable {
         }
     }
     
+    
+    
+        public void guardar(Kit kit){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.persist(kit);
+	em.getTransaction().commit();
+        em.close();
+    }
+   
+    public void modificar(Kit kit){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.merge(kit);
+	em.getTransaction().commit();
+        em.close();
+    }
+    
+    public void eliminar(Kit kit){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.remove(em.merge(kit));
+	em.getTransaction().commit();
+        em.close();
+    }
+    
 }
