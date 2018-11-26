@@ -3,7 +3,9 @@ DROP TABLE IF EXISTS kit, administrador, alumno, profesor, material;
 CREATE TABLE kit(
   id serial               primary key       not null,
   fecha_Vencimiento       TIMESTAMP,
-  lista_materiales        int []
+  lista_materiales        int [],
+  alumno_id               int,
+  profesor_id             int
 );
 
 CREATE TABLE administrador(

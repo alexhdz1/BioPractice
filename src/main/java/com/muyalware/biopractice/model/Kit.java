@@ -31,7 +31,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Kit.findAll", query = "SELECT k FROM Kit k")
     , @NamedQuery(name = "Kit.findById", query = "SELECT k FROM Kit k WHERE k.id = :id")
     , @NamedQuery(name = "Kit.findByFechaVencimiento", query = "SELECT k FROM Kit k WHERE k.fechaVencimiento = :fechaVencimiento")
-    , @NamedQuery(name = "Kit.findByListaMateriales", query = "SELECT k FROM Kit k WHERE k.listaMateriales = :listaMateriales")})
+    , @NamedQuery(name = "Kit.findByListaMateriales", query = "SELECT k FROM Kit k WHERE k.listaMateriales = :listaMateriales")
+    , @NamedQuery(name = "Kit.findByAlumnoId", query = "SELECT k FROM Kit k WHERE k.alumnoId = :alumnoId")
+    , @NamedQuery(name = "Kit.findByProfesorId", query = "SELECT k FROM Kit k WHERE k.profesorId = :profesorId")})
 public class Kit implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,6 +47,10 @@ public class Kit implements Serializable {
     private Date fechaVencimiento;
     @Column(name = "lista_materiales")
     private Serializable listaMateriales;
+    @Column(name = "alumno_id")
+    private Integer alumnoId;
+    @Column(name = "profesor_id")
+    private Integer profesorId;
 
     public Kit() {
     }
@@ -75,6 +81,22 @@ public class Kit implements Serializable {
 
     public void setListaMateriales(Serializable listaMateriales) {
         this.listaMateriales = listaMateriales;
+    }
+
+    public Integer getAlumnoId() {
+        return alumnoId;
+    }
+
+    public void setAlumnoId(Integer alumnoId) {
+        this.alumnoId = alumnoId;
+    }
+
+    public Integer getProfesorId() {
+        return profesorId;
+    }
+
+    public void setProfesorId(Integer profesorId) {
+        this.profesorId = profesorId;
     }
 
     @Override
