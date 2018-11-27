@@ -6,6 +6,7 @@
 package com.muyalware.biopractice.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -79,8 +80,8 @@ public class Kit implements Serializable {
         return listaMateriales;
     }
 
-    public void setListaMateriales(Serializable listaMateriales) {
-        this.listaMateriales = listaMateriales;
+    public void setListaMateriales(ArrayList<Integer> listaMateriales) {
+        this.listaMateriales = listaMateriales.toArray();
     }
 
     public Integer getAlumnoId() {
