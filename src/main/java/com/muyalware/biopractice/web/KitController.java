@@ -36,7 +36,7 @@ public class KitController {
     private Profesor profesor;
     private Alumno alumno;
     private List<Integer> listaMateriales;
-    
+    private List<Kit> lista;
     
     
     
@@ -54,7 +54,7 @@ public class KitController {
         profesor = new Profesor();
         alumno   = new Alumno();
         listaMateriales = new ArrayList<>();
-        
+        lista = jpa.findKitEntities();
     }
     
     public Kit getKit(){
@@ -73,4 +73,21 @@ public class KitController {
    public List<Kit> getRegistrados(){
        return jpa.findKitEntities();
    }
+   
+   public void guardar(){
+	jpa.guardar(kit);
+        lista=jpa.findKitEntities();
+    }
+    public void modificar(){
+	jpa.modificar(kit);
+        lista=jpa.findKitEntities();
+    }
+    public void eliminar(){
+	jpa.eliminar(kit);
+        lista=jpa.findKitEntities();
+    }
+   
+   
+   
+   
 }
