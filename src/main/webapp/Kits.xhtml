@@ -1,0 +1,81 @@
+<ui:composition
+    template="/WEB-INF/facelets/templates/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content" >
+        <div class="jumbotron" style="background-color:rgba(248,248,255,0.3) ">
+
+            <h:form>
+                <h:panelGrid columns= "2">
+                    <h:outputText value = "id" style="color: white "/>
+                    <h:inputText id="material_id" value ="#{materialController.material.id}" />
+                    <h:outputText value = "Nombre" style="color: white" />
+                    <h:inputText id="material_nombre" value ="#{materialController.material.nombre}" />
+                    <h:outputText  value = "Descripcion"  style="color: white "/>
+                    <h:inputText id="material_descripcion" value ="#{materialController.material.descripcion}" />
+                    <h:outputText value = "Categoria" style="color: white" />
+                    <h:inputText id="material_categoria" value ="#{materialController.material.categoria}" />
+                    <h:outputText value = "Subcategoria" style="color: white" />
+                    <h:inputText id="material_subcategoria" value ="#{materialController.material.subcategoria}" />
+                    <h:outputText value = "Estado" style="color: white" />
+                    <h:selectOneMenu id="material_prestado" value="#{materialController.material.prestado}">
+                        <f:selectItem itemLabel="Disponible" itemValue="true"/>
+                        <f:selectItem itemLabel="Prestado" itemValue="false"/>
+                        <f:selectItem itemLabel="Mantenimiento" itemValue="false"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandButton value ="Buscar"  class="btn btn-primary my-2 my-sm-0" action="#{materialController.buscar()}" />
+                <h:commandButton value ="Guardar" class="btn btn-primary my-2 my-sm-0" action="#{materialController.guardar()}" />
+		<h:commandButton value ="Editar" class="btn btn-primary my-2 my-sm-0" action="#{materialController.modificar()}"/>
+		<h:commandButton value ="Eliminar" class="btn btn-danger my-2 my-sm-0" action="#{materialController.eliminar()}"/>
+                    
+                <p:dataTable id="datos" value="#{materialController.getLista()}" var="mat">
+                    <p:column headerText="">
+                        <h:commandButton value ="+"  class="btn btn-primary my-2 my-sm-0" action="#{kitController.agregaMaterial(mat.id)}" />
+                    </p:column>
+                    <p:column headerText="">
+                        <h:commandButton value ="-"  class="btn btn-primary my-2 my-sm-0" action="#{kitController.eliminaMaterial(mat.id)}" />
+                    </p:column>
+                    <p:column headerText="Id">
+                        <h:outputText value="#{mat.id}"/>
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{mat.nombre}"/>
+                    </p:column>
+                    <p:column headerText="Descripcion">
+                        <h:outputText value="#{mat.descripcion}"/>
+                    </p:column>
+                    <p:column headerText="Prestado">
+                        <h:outputText value="#{mat.prestado}"/>
+                    </p:column>
+                    <p:column headerText="Categoria">
+                        <h:outputText value="#{mat.categoria}"/>
+                    </p:column>
+                    <p:column headerText="SubCategoria">
+                        <h:outputText value="#{mat.subcategoria}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </div>
+	<script>
+	  function carga(id,nom,des,uni,pre,cat,sub){
+	      document.getElementById("material_id").value = id;
+	      document.getElementById("material_nombre").value = nom;
+	      document.getElementById("material_descripcion").value = des;
+	      document.getElementById("material_unidades").value = uni;
+	      document.getElementById("material_prestado").value = pre;
+	      document.getElementById("material_categoria").value = cat;
+	      document.getElementById("material_subcategoria").value = sub;
+	  }
+	</script>
+
+    </ui:define>
+
+
+</ui:composition>
+

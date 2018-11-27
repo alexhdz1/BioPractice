@@ -86,6 +86,12 @@ public class KitController {
 	jpa.eliminar(kit);
         lista=jpa.findKitEntities();
     }
+    public void agregaMaterial(int id){
+        listaMateriales.add(id);
+    }
+    public void eliminaMaterial(int id){
+        listaMateriales.remove(id);
+    }
    
    
    
