@@ -1,0 +1,89 @@
+<ui:composition
+    template="/WEB-INF/facelets/templates/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content" >
+        <div class="jumbotron" style="background-color:rgba(248,248,255,0.3) ">
+
+                <h:panelGrid columns= "2">
+                    <h:outputText value = "id" style="color: white "/>
+                    <h:inputText id="material_id" value ="#{materialController.material.id}" />
+                    <h:outputText value = "Nombre" style="color: white" />
+                    <h:inputText id="material_nombre" value ="#{materialController.material.nombre}" />
+                    <h:outputText  value = "Descripcion"  style="color: white "/>
+                    <h:inputText id="material_descripcion" value ="#{materialController.material.descripcion}" />
+                    <h:outputText value = "Categoria" style="color: white" />
+                    <h:inputText id="material_categoria" value ="#{materialController.material.categoria}" />
+                    <h:outputText value = "Subcategoria" style="color: white" />
+                    <h:inputText id="material_subcategoria" value ="#{materialController.material.subcategoria}" />
+                    <h:outputText value = "Estado" style="color: white" />
+                    <h:selectOneMenu id="material_prestado" value="#{materialController.material.prestado}">
+                        <f:selectItem itemLabel="Disponible" itemValue="true"/>
+                        <f:selectItem itemLabel="Prestado" itemValue="false"/>
+                        <f:selectItem itemLabel="Mantenimiento" itemValue="false"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandButton value ="Buscar"  class="btn btn-primary my-2 my-sm-0" action="#{materialController.buscar()}" />
+                <h:commandButton value ="Guardar" class="btn btn-primary my-2 my-sm-0" action="#{materialController.guardar()}" />
+		<h:commandButton value ="Editar" class="btn btn-primary my-2 my-sm-0" action="#{materialController.modificar()}"/>
+		<h:commandButton value ="Eliminar" class="btn btn-danger my-2 my-sm-0" action="#{materialController.eliminar()}"/>
+                    
+                <p:dataTable id="datos" value="#{materialController.getLista()}" var="mat">
+                    <p:column headerText="">
+                        <button value ="+"  class="btn btn-primary my-2 my-sm-0" onclick="agrega(#{mat.id})" />
+                    </p:column>
+                    <p:column headerText="">
+                        <button value ="-"  class="btn btn-primary my-2 my-sm-0" onclick="elimina(#{mat.id})" />
+                    </p:column>
+                    <p:column headerText="Id">
+                        <h:outputText value="#{mat.id}"/>
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{mat.nombre}"/>
+                    </p:column>
+                    <p:column headerText="Descripcion">
+                        <h:outputText value="#{mat.descripcion}"/>
+                    </p:column>
+                    <p:column headerText="Prestado">
+                        <h:outputText value="#{mat.prestado}"/>
+                    </p:column>
+                    <p:column headerText="Categoria">
+                        <h:outputText value="#{mat.categoria}"/>
+                    </p:column>
+                    <p:column headerText="SubCategoria">
+                        <h:outputText value="#{mat.subcategoria}"/>
+                    </p:column>
+                </p:dataTable>
+		<script>
+		  var mats = [0];
+		  function agrega(item){
+		      mats.push(item);
+		      console.log(mats.toString());
+		  }
+		  function elimina(item){
+		      mats.splice(mats.indexOf(item),1);
+		      console.log(mats.toString());
+		  }
+		</script>
+		<p:dataTable id="materialesEnKit" value="mats" var="mat1">
+                    <p:column headerText="Id">
+                        <h:outputText value="mat1"/>
+                    </p:column>
+                </p:dataTable>
+        </div>
+	<script>
+	  function test1(){
+	      alert("hola");
+	  }
+	</script>
+
+    </ui:define>
+
+
+</ui:composition>
+

@@ -10,7 +10,7 @@ import com.muyalware.biopractice.controller.IllegalOrphanException;
 import com.muyalware.biopractice.controller.exceptions.exceptions.NonexistentEntityException;
 import com.muyalware.biopractice.model.Material;
 import com.muyalware.biopractice.model.PersistenceUtil;
-import java.util.List;
+import java.util.*;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -27,6 +27,7 @@ public class MaterialController {
     private final MaterialJpaController jpa;
     private Material material;
     private List<Material> lista;
+    private List<Material> lista1;
 
     /**
      * Creates a new instance of MaterialController
@@ -35,6 +36,7 @@ public class MaterialController {
         jpa = new MaterialJpaController(PersistenceUtil.getEntityManagerFactory());
         material = new Material();
 	lista = jpa.findMaterialEntities();
+	lista1 = new ArrayList<Material>();
     }
     
     public Material getMaterial() {
@@ -47,6 +49,10 @@ public class MaterialController {
 
     public List<Material> getLista(){
 	return lista;
+    }
+
+    public List<Material> getLista1(){
+	return lista1;
     }
     
     public void imprime(){

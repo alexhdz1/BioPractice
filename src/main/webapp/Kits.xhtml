@@ -33,46 +33,39 @@
                 <h:commandButton value ="Guardar" class="btn btn-primary my-2 my-sm-0" action="#{materialController.guardar()}" />
 		<h:commandButton value ="Editar" class="btn btn-primary my-2 my-sm-0" action="#{materialController.modificar()}"/>
 		<h:commandButton value ="Eliminar" class="btn btn-danger my-2 my-sm-0" action="#{materialController.eliminar()}"/>
+		
                     
-                <p:dataTable id="datos" value="#{materialController.getLista()}" var="mat">
-                    <p:column headerText="">
-                        <h:commandButton value ="+"  class="btn btn-primary my-2 my-sm-0" action="#{kitController.agregaMaterial(mat.id)}" />
-                    </p:column>
-                    <p:column headerText="">
-                        <h:commandButton value ="-"  class="btn btn-primary my-2 my-sm-0" action="#{kitController.eliminaMaterial(mat.id)}" />
-                    </p:column>
-                    <p:column headerText="Id">
-                        <h:outputText value="#{mat.id}"/>
-                    </p:column>
-                    <p:column headerText="Nombre">
-                        <h:outputText value="#{mat.nombre}"/>
-                    </p:column>
-                    <p:column headerText="Descripcion">
-                        <h:outputText value="#{mat.descripcion}"/>
-                    </p:column>
-                    <p:column headerText="Prestado">
-                        <h:outputText value="#{mat.prestado}"/>
-                    </p:column>
-                    <p:column headerText="Categoria">
-                        <h:outputText value="#{mat.categoria}"/>
-                    </p:column>
-                    <p:column headerText="SubCategoria">
-                        <h:outputText value="#{mat.subcategoria}"/>
-                    </p:column>
+                <p:dataTable id="datos" value="#{materialController.getLista()}" selection="materialController.getLista1()" var="mat" rowKey="#{mat.id}">
+		  <p:column selectionMode="multiple" />
+                  <p:column headerText="Id">
+                    <h:outputText value="#{mat.id}"/>
+                  </p:column>
+                  <p:column headerText="Nombre">
+                    <h:outputText value="#{mat.nombre}"/>
+                  </p:column>
+                  <p:column headerText="Descripcion">
+                    <h:outputText value="#{mat.descripcion}"/>
+                  </p:column>
+                  <p:column headerText="Prestado">
+                    <h:outputText value="#{mat.prestado}"/>
+                  </p:column>
+                  <p:column headerText="Categoria">
+                    <h:outputText value="#{mat.categoria}"/>
+                  </p:column>
+                  <p:column headerText="SubCategoria">
+                    <h:outputText value="#{mat.subcategoria}"/>
+		  </p:column>
+		  <f:facet name="footer">
+		    <h:commandButton value ="Agregar a Kit" class="btn btn-danger my-2 my-sm-0" update=":form:materialesEnKit"/>
+		  </f:facet>
+                </p:dataTable>
+		<p:dataTable id="materialesEnKit" value="#{materialController.getLista1()}" var="mat1">
+                  <p:column headerText="Id">
+                    <h:outputText value="#{mat1.id}"/>
+                  </p:column>
                 </p:dataTable>
             </h:form>
         </div>
-	<script>
-	  function carga(id,nom,des,uni,pre,cat,sub){
-	      document.getElementById("material_id").value = id;
-	      document.getElementById("material_nombre").value = nom;
-	      document.getElementById("material_descripcion").value = des;
-	      document.getElementById("material_unidades").value = uni;
-	      document.getElementById("material_prestado").value = pre;
-	      document.getElementById("material_categoria").value = cat;
-	      document.getElementById("material_subcategoria").value = sub;
-	  }
-	</script>
 
     </ui:define>
 

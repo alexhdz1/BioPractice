@@ -47,17 +47,19 @@ public class Kit implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaVencimiento;
     @Column(name = "lista_materiales")
-    private Serializable listaMateriales;
+    private int [] listaMateriales;
     @Column(name = "alumno_id")
     private Integer alumnoId;
     @Column(name = "profesor_id")
     private Integer profesorId;
 
     public Kit() {
+	listaMateriales = new int[0];
     }
 
     public Kit(Integer id) {
         this.id = id;
+	listaMateriales = new int[0];
     }
 
     public Integer getId() {
@@ -76,12 +78,21 @@ public class Kit implements Serializable {
         this.fechaVencimiento = fechaVencimiento;
     }
 
-    public Serializable getListaMateriales() {
-        return listaMateriales;
+    public ArrayList<Integer> getListaMateriales() {
+	ArrayList<Integer> tmp = new ArrayList<Integer>();
+	for(int x = 0; x < listaMateriales.length; x++){
+	    tmp.add(new Integer(listaMateriales[x]));
+	}
+	return tmp;
     }
 
     public void setListaMateriales(ArrayList<Integer> listaMateriales) {
-        this.listaMateriales = listaMateriales.toArray();
+	this.listaMateriales = new int[listaMateriales.size()];
+	int contador = 0;
+	for(Integer x:listaMateriales){
+	    this.listaMateriales[contador] = x.intValue();
+	    contador++;
+	}
     }
 
     public Integer getAlumnoId() {
