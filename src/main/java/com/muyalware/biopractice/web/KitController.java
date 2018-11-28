@@ -36,7 +36,7 @@ public class KitController {
     private Profesor profesor;
     private Alumno alumno;
     private ArrayList<Integer> listaMateriales;
-    public List<Material> tmpMateriales;
+    public List<Material> listaTmpMateriales;
     private List<Kit> lista;
     
     
@@ -56,7 +56,7 @@ public class KitController {
         alumno   = new Alumno();
 	listaMateriales = kit.getListaMateriales();
         lista = jpa.findKitEntities();
-        tmpMateriales = new ArrayList<Material>();
+        listaTmpMateriales = new ArrayList<Material>();
     }
     
     public Kit getKit(){
@@ -99,12 +99,12 @@ public class KitController {
     public ArrayList<Integer> getlistaMateriales(){
 	return listaMateriales;
     }
-    public List<Material> getlistaTmpMateriales(){
-	return tmpMateriales;
+    public List<Material> getListaTmpMateriales(){
+	return listaTmpMateriales;
     }
    
     public void guardaLista(){
-        for(Material mat:tmpMateriales){
+        for(Material mat:listaTmpMateriales){
             System.out.println(mat.getId().toString());
             listaMateriales.add(new Integer(mat.getId()));
         }

@@ -30,12 +30,7 @@
                     </h:selectOneMenu>
                 </h:panelGrid>
                 <h:commandButton value ="Buscar"  class="btn btn-primary my-2 my-sm-0" action="#{materialController.buscar()}" />
-                <h:commandButton value ="Guardar" class="btn btn-primary my-2 my-sm-0" action="#{materialController.guardar()}" />
-		<h:commandButton value ="Editar" class="btn btn-primary my-2 my-sm-0" action="#{materialController.modificar()}"/>
-		<h:commandButton value ="Eliminar" class="btn btn-danger my-2 my-sm-0" action="#{materialController.eliminar()}"/>
-		
-                    
-                <p:dataTable id="datos" value="#{materialController.lista}" selection="#{kitController.getlistaTmpMateriales()}" var="mat" rowKey="#{mat.id}">
+                <p:dataTable id="datos" value="#{materialController.lista}" selection="#{kitController.listaTmpMateriales}" var="mat" rowKey="#{mat.id}">
 		  <p:column selectionMode="multiple" />
                   <p:column headerText="Id">
                     <h:outputText value="#{mat.id}"/>
