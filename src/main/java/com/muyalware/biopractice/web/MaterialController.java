@@ -27,7 +27,7 @@ public class MaterialController {
     private final MaterialJpaController jpa;
     private Material material;
     private List<Material> lista;
-    private List<Material> lista1;
+    private final List<Material> lista1;
 
     /**
      * Creates a new instance of MaterialController
@@ -36,7 +36,7 @@ public class MaterialController {
         jpa = new MaterialJpaController(PersistenceUtil.getEntityManagerFactory());
         material = new Material();
 	lista = jpa.findMaterialEntities();
-	lista1 = new ArrayList<Material>();
+	lista1 = new ArrayList<>();
     }
     
     public Material getMaterial() {
