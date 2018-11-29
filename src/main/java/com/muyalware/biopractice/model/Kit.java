@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.nio.*;
 
 /**
  *
@@ -47,19 +48,17 @@ public class Kit implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaVencimiento;
     @Column(name = "lista_materiales")
-    private int [] listaMateriales;
+    private byte [] listaMateriales;
     @Column(name = "alumno_id")
     private Integer alumnoId;
     @Column(name = "profesor_id")
     private Integer profesorId;
 
     public Kit() {
-	listaMateriales = new int[0];
     }
 
     public Kit(Integer id) {
         this.id = id;
-	listaMateriales = new int[0];
     }
 
     public Integer getId() {
@@ -80,19 +79,29 @@ public class Kit implements Serializable {
 
     public ArrayList<Integer> getListaMateriales() {
 	ArrayList<Integer> tmp = new ArrayList<Integer>();
-	for(int x = 0; x < listaMateriales.length; x++){
-	    tmp.add(new Integer(listaMateriales[x]));
+	if(listaMateriales==null){
+	    
+	}
+	else {
+	    int [] listaMateriales1 = convertir(listaMateriales);
+	    for(int x = 0; x < listaMateriales1.length; x++){
+		tmp.add(new Integer(listaMateriales1[x]));
+	    }
 	}
 	return tmp;
     }
 
     public void setListaMateriales(ArrayList<Integer> listaMateriales) {
-	this.listaMateriales = new int[listaMateriales.size()];
+	int [] listaMateriales1 = new int[listaMateriales.size()];
 	int contador = 0;
 	for(Integer x:listaMateriales){
-	    this.listaMateriales[contador] = x.intValue();
+	    listaMateriales1[contador] = x.intValue();
 	    contador++;
 	}
+        ByteBuffer byteBuffer = ByteBuffer.allocate(listaMateriales1.length * 4);        
+        IntBuffer intBuffer = byteBuffer.asIntBuffer();
+        intBuffer.put(listaMateriales1);
+        this.listaMateriales = byteBuffer.array();
     }
 
     public Integer getAlumnoId() {
@@ -134,6 +143,17 @@ public class Kit implements Serializable {
     @Override
     public String toString() {
         return "com.muyalware.biopractice.model.Kit[ id=" + id + " ]";
+    }
+
+    private int[] convertir(byte buf[]) {
+	int intArr[] = new int[buf.length / 4];
+	int offset = 0;
+	for(int i = 0; i < intArr.length; i++) {
+	    intArr[i] = (buf[3 + offset] & 0xFF) | ((buf[2 + offset] & 0xFF) << 8) |
+		((buf[1 + offset] & 0xFF) << 16) | ((buf[0 + offset] & 0xFF) << 24);  
+	    offset += 4;
+	}
+	return intArr;
     }
     
 }
