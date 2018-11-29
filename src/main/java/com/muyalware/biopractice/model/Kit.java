@@ -48,7 +48,7 @@ public class Kit implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaVencimiento;
     @Column(name = "lista_materiales")
-    private byte [] listaMateriales;
+    private String listaMateriales;
     @Column(name = "alumno_id")
     private Integer alumnoId;
     @Column(name = "profesor_id")
@@ -83,7 +83,9 @@ public class Kit implements Serializable {
 	    
 	}
 	else {
-	    int [] listaMateriales1 = convertir(listaMateriales);
+	    String lista1 = listaMateriales.replace("[","");
+	    lista1 = lista1.replace("]","");
+	    String [] listaMateriales1 = lista1.split(",");
 	    for(int x = 0; x < listaMateriales1.length; x++){
 		tmp.add(new Integer(listaMateriales1[x]));
 	    }
@@ -92,16 +94,7 @@ public class Kit implements Serializable {
     }
 
     public void setListaMateriales(ArrayList<Integer> listaMateriales) {
-	int [] listaMateriales1 = new int[listaMateriales.size()];
-	int contador = 0;
-	for(Integer x:listaMateriales){
-	    listaMateriales1[contador] = x.intValue();
-	    contador++;
-	}
-        ByteBuffer byteBuffer = ByteBuffer.allocate(listaMateriales1.length * 4);        
-        IntBuffer intBuffer = byteBuffer.asIntBuffer();
-        intBuffer.put(listaMateriales1);
-        this.listaMateriales = byteBuffer.array();
+        this.listaMateriales = listaMateriales.toString();
     }
 
     public Integer getAlumnoId() {
@@ -145,15 +138,6 @@ public class Kit implements Serializable {
         return "com.muyalware.biopractice.model.Kit[ id=" + id + " ]";
     }
 
-    private int[] convertir(byte buf[]) {
-	int intArr[] = new int[buf.length / 4];
-	int offset = 0;
-	for(int i = 0; i < intArr.length; i++) {
-	    intArr[i] = (buf[3 + offset] & 0xFF) | ((buf[2 + offset] & 0xFF) << 8) |
-		((buf[1 + offset] & 0xFF) << 16) | ((buf[0 + offset] & 0xFF) << 24);  
-	    offset += 4;
-	}
-	return intArr;
-    }
+
     
 }
