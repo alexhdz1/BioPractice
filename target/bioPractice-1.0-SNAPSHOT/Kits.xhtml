@@ -1,0 +1,57 @@
+<ui:composition
+    template="/WEB-INF/facelets/templates/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content" >
+        <div class="jumbotron" style="background-color:rgba(248,248,255,0.3) ">
+
+            <h:form>
+                <h:panelGrid columns= "2">
+                    <h:outputText value = "id" style="color: white "/>
+                    <h:inputText id="kit_id" value ="#{kitController.kit.id}" />
+                </h:panelGrid>
+                <h:commandButton value ="Buscar"  class="btn btn-primary my-2 my-sm-0" />
+                <p:dataTable id="datos" value="#{kitController.getRegistrados()}" var="mat" rowKey="#{mat.id}">
+		  <!--<p:column selectionMode="multiple" />-->
+                  <p:column headerText="Id">
+                    <h:outputText value="#{mat.id}"/>
+                  </p:column>
+                  <p:column headerText="Materiales">
+                    <p:dataTable id="datos" value="#{kitController.listaMaterialesKit(mat.getListaMateriales())}" var="mat1">
+                      <p:column headerText="Id">
+                        <h:outputText value="#{mat1.id}"/>
+                      </p:column>
+                      <p:column headerText="Nombre">
+                        <h:outputText value="#{mat1.nombre}"/>
+                      </p:column>
+                      <p:column headerText="Descripcion">
+                        <h:outputText value="#{mat1.descripcion}"/>
+                      </p:column>
+                      <p:column headerText="Prestado">
+                        <h:outputText value="#{mat1.prestado}"/>
+                      </p:column>
+                      <p:column headerText="Categoria">
+                        <h:outputText value="#{mat1.categoria}"/>
+                      </p:column>
+                      <p:column headerText="SubCategoria">
+                        <h:outputText value="#{mat1.subcategoria}"/>
+                      </p:column>
+                    </p:dataTable>
+                  </p:column>
+		  <!--<f:facet name="footer">
+                      <h:commandButton value ="Agregar a Kit" class="btn btn-danger my-2 my-sm-0" action ="#{kitController.guardaLista()}" />
+		  </f:facet>-->
+                </p:dataTable>
+            </h:form>
+        </div>
+
+    </ui:define>
+
+
+</ui:composition>
+

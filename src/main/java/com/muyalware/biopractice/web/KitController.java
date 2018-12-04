@@ -37,7 +37,6 @@ public class KitController {
     private Alumno alumno;
     private ArrayList<Integer> listaMateriales;
     public List<Material> listaTmpMateriales;
-    public 
     private List<Kit> lista;
     
     
@@ -108,7 +107,7 @@ public class KitController {
     public List<Material> listaMaterialesKit(ArrayList<Integer> ids){
 	ArrayList<Material> tmp = new ArrayList<Material>();
 	for(Integer x:ids){
-	    tmp.add(MaterialController.busca(x.intValue()));
+	    tmp.add(new MaterialController().busca(x.intValue()));
 	}
 	return tmp;
     }
