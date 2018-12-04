@@ -37,6 +37,7 @@ public class KitController {
     private Alumno alumno;
     private ArrayList<Integer> listaMateriales;
     public List<Material> listaTmpMateriales;
+    public 
     private List<Kit> lista;
     
     
@@ -44,8 +45,7 @@ public class KitController {
     /**
      * Creates a new instance of KitController
      */
-    public KitController() {
-        
+    public KitController() { 
         jpa = new KitJpaController(PersistenceUtil.getEntityManagerFactory());
         jpaMat = new MaterialJpaController(PersistenceUtil.getEntityManagerFactory());
         jpaAlumn = new AlumnoJpaController(PersistenceUtil.getEntityManagerFactory());
@@ -54,7 +54,7 @@ public class KitController {
         material = new Material();
         profesor = new Profesor();
         alumno   = new Alumno();
-	listaMateriales = (ArrayList<Integer>) kit.getListaMateriales();
+	listaMateriales = kit.getListaMateriales();
         lista = jpa.findKitEntities();
         listaTmpMateriales = new ArrayList<Material>();
     }
@@ -105,6 +105,13 @@ public class KitController {
     public void setListaTmpMateriales(List<Material> tmp){
 	listaTmpMateriales = tmp;
     }
+    public List<Material> listaMaterialesKit(ArrayList<Integer> ids){
+	ArrayList<Material> tmp = new ArrayList<Material>();
+	for(Integer x:ids){
+	    tmp.add(MaterialController.busca(x.intValue()));
+	}
+	return tmp;
+    }
    
     public void guardaLista(){
         for(Material mat:listaTmpMateriales){
@@ -113,7 +120,6 @@ public class KitController {
         }
         kit.setListaMateriales(listaMateriales);
         guardar();
-        
     }
    
    

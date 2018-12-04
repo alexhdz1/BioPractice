@@ -13,52 +13,39 @@
             <h:form>
                 <h:panelGrid columns= "2">
                     <h:outputText value = "id" style="color: white "/>
-                    <h:inputText id="material_id" value ="#{materialController.material.id}" />
-                    <h:outputText value = "Nombre" style="color: white" />
-                    <h:inputText id="material_nombre" value ="#{materialController.material.nombre}" />
-                    <h:outputText  value = "Descripcion"  style="color: white "/>
-                    <h:inputText id="material_descripcion" value ="#{materialController.material.descripcion}" />
-                    <h:outputText value = "Categoria" style="color: white" />
-                    <h:inputText id="material_categoria" value ="#{materialController.material.categoria}" />
-                    <h:outputText value = "Subcategoria" style="color: white" />
-                    <h:inputText id="material_subcategoria" value ="#{materialController.material.subcategoria}" />
-                    <h:outputText value = "Estado" style="color: white" />
-                    <h:selectOneMenu id="material_prestado" value="#{materialController.material.prestado}">
-                        <f:selectItem itemLabel="Disponible" itemValue="true"/>
-                        <f:selectItem itemLabel="Prestado" itemValue="false"/>
-                        <f:selectItem itemLabel="Mantenimiento" itemValue="false"/>
-                    </h:selectOneMenu>
-		    <h:inputText id="kit_id" value ="#{kitController.kit.id}"/>
+                    <h:inputText id="kit_id" value ="#{kitController.kit.id}" />
                 </h:panelGrid>
-                <h:commandButton value ="Buscar"  class="btn btn-primary my-2 my-sm-0" action="#{materialController.buscar()}" />
-                <p:dataTable id="datos" value="#{materialController.lista}" selection="#{kitController.listaTmpMateriales}" var="mat" rowKey="#{mat.id}">
-		  <p:column selectionMode="multiple" />
+                <h:commandButton value ="Buscar"  class="btn btn-primary my-2 my-sm-0" />
+                <p:dataTable id="datos" value="#{kitController.getRegistrados()}" var="mat" rowKey="#{mat.id}">
+		  <!--<p:column selectionMode="multiple" />-->
                   <p:column headerText="Id">
                     <h:outputText value="#{mat.id}"/>
                   </p:column>
-                  <p:column headerText="Nombre">
-                    <h:outputText value="#{mat.nombre}"/>
+                  <p:column headerText="Materiales">
+                    <p:dataTable id="datos" value="#{kitController.listaMaterialesKit(mat.getListaMateriales())}" var="mat1">
+                      <p:column headerText="Id">
+                        <h:outputText value="#{mat1.id}"/>
+                      </p:column>
+                      <p:column headerText="Nombre">
+                        <h:outputText value="#{mat1.nombre}"/>
+                      </p:column>
+                      <p:column headerText="Descripcion">
+                        <h:outputText value="#{mat1.descripcion}"/>
+                      </p:column>
+                      <p:column headerText="Prestado">
+                        <h:outputText value="#{mat1.prestado}"/>
+                      </p:column>
+                      <p:column headerText="Categoria">
+                        <h:outputText value="#{mat1.categoria}"/>
+                      </p:column>
+                      <p:column headerText="SubCategoria">
+                        <h:outputText value="#{mat1.subcategoria}"/>
+                      </p:column>
+                    </p:dataTable>
                   </p:column>
-                  <p:column headerText="Descripcion">
-                    <h:outputText value="#{mat.descripcion}"/>
-                  </p:column>
-                  <p:column headerText="Prestado">
-                    <h:outputText value="#{mat.prestado}"/>
-                  </p:column>
-                  <p:column headerText="Categoria">
-                    <h:outputText value="#{mat.categoria}"/>
-                  </p:column>
-                  <p:column headerText="SubCategoria">
-                    <h:outputText value="#{mat.subcategoria}"/>
-		  </p:column>
-		  <f:facet name="footer">
+		  <!--<f:facet name="footer">
                       <h:commandButton value ="Agregar a Kit" class="btn btn-danger my-2 my-sm-0" action ="#{kitController.guardaLista()}" />
-		  </f:facet>
-                </p:dataTable>
-		<p:dataTable id="materialesEnKit" value="#{materialController.getLista1()}" var="mat1">
-                  <p:column headerText="Id">
-                    <h:outputText value="#{mat1.id}"/>
-                  </p:column>
+		  </f:facet>-->
                 </p:dataTable>
             </h:form>
         </div>

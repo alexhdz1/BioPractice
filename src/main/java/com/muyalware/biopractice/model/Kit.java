@@ -56,27 +56,21 @@ public class Kit implements Serializable {
 
     public Kit() {
     }
-
     public Kit(Integer id) {
         this.id = id;
     }
-
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
     public Date getFechaVencimiento() {
         return fechaVencimiento;
     }
-
     public void setFechaVencimiento(Date fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
-
     public ArrayList<Integer> getListaMateriales() {
 	ArrayList<Integer> tmp = new ArrayList<Integer>();
 	if(listaMateriales==null){
@@ -85,6 +79,7 @@ public class Kit implements Serializable {
 	else {
 	    String lista1 = listaMateriales.replace("[","");
 	    lista1 = lista1.replace("]","");
+	    lista1 = lista1.replace(" ","");
 	    String [] listaMateriales1 = lista1.split(",");
 	    for(int x = 0; x < listaMateriales1.length; x++){
 		tmp.add(new Integer(listaMateriales1[x]));
@@ -92,34 +87,27 @@ public class Kit implements Serializable {
 	}
 	return tmp;
     }
-
     public void setListaMateriales(ArrayList<Integer> listaMateriales) {
         this.listaMateriales = listaMateriales.toString();
     }
-
     public Integer getAlumnoId() {
         return alumnoId;
     }
-
     public void setAlumnoId(Integer alumnoId) {
         this.alumnoId = alumnoId;
     }
-
     public Integer getProfesorId() {
         return profesorId;
     }
-
     public void setProfesorId(Integer profesorId) {
         this.profesorId = profesorId;
     }
-
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -132,12 +120,8 @@ public class Kit implements Serializable {
         }
         return true;
     }
-
     @Override
     public String toString() {
         return "com.muyalware.biopractice.model.Kit[ id=" + id + " ]";
     }
-
-
-    
 }
