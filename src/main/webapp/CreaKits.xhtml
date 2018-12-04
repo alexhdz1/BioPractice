@@ -28,7 +28,7 @@
                         <f:selectItem itemLabel="Prestado" itemValue="false"/>
                         <f:selectItem itemLabel="Mantenimiento" itemValue="false"/>
                     </h:selectOneMenu>
-		    <h:inputText id="kit_id" value ="#{kitController.kit.id}"/>
+		    <h:inputText id="kit_id" value ="#{kitController.kit.id}" readonly="true" />
                 </h:panelGrid>
                 <h:commandButton value ="Buscar"  class="btn btn-primary my-2 my-sm-0" action="#{materialController.buscar()}" />
                 <p:dataTable id="datos" value="#{materialController.lista}" selection="#{kitController.listaTmpMateriales}" var="mat" rowKey="#{mat.id}">
