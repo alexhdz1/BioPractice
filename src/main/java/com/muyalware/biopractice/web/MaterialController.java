@@ -10,11 +10,23 @@ import com.muyalware.biopractice.controller.IllegalOrphanException;
 import com.muyalware.biopractice.controller.exceptions.exceptions.NonexistentEntityException;
 import com.muyalware.biopractice.model.Material;
 import com.muyalware.biopractice.model.PersistenceUtil;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.Part;
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -28,7 +40,43 @@ public class MaterialController {
     private Material material;
     private List<Material> lista;
     private final List<Material> lista1;
-
+    
+    
+    public Part file; // +getter+setter
+    
+    public Part getFile(){
+        return file;
+    }
+    public void setFile(Part fi){
+        this.file = fi;
+    }
+    public void save(int id) {
+        
+        InputStream input = null;
+        try {
+            input = file.getInputStream();
+            System.out.println("$$$$$$$$$$entre a save$$$$$$$$$$");
+            
+            String ruta = "/home/alexis/Escritorio/BIO/bioPractice/src/main/webapp/images/img_material/";
+            String directorio = ruta + id + ".jpg";
+                    
+            
+            File destino = new File (directorio);
+            
+            if (destino.exists()) {
+               destino.delete();     
+            }
+            
+            Files.copy(input, destino.toPath());
+        } catch(IOException ex){
+            Logger.getLogger(MaterialController.class.getName()).log(Level.SEVERE, null, ex);
+        
+        }
+            
+        
+    }
+    
+    
     /**
      * Creates a new instance of MaterialController
      */
@@ -81,12 +129,39 @@ public class MaterialController {
 
     public void guardar(){
 	jpa.guardar(material);
+        
+        
+        
+        int id = material.getId();
+        
+        if(file!= null){
+            System.err.println("#######no soy nulo##########");
+            save(id);
+            //copiaImagen();
+        }else{
+            muestraMensaje("Porfavor ingrese una imagen");
+        }
+        
         lista=jpa.findMaterialEntities();
+        
     }
     public void modificar(){
 	jpa.modificar(material);
+
+        
+        int id = material.getId();
+        
+        if(file!= null){
+            System.err.println("#######no soy nulo##########");
+            save(id);
+            //copiaImagen();
+        }else{
+            muestraMensaje("Porfavor Ingrese una imagen");
+        }
+        
         lista=jpa.findMaterialEntities();
     }
+    
     public void eliminar(){
 	jpa.eliminar(material);
         lista=jpa.findMaterialEntities();
@@ -99,4 +174,6 @@ public class MaterialController {
          FacesMessage mensajeFace = new FacesMessage(mensaje);
         RequestContext.getCurrentInstance().showMessageInDialog(mensajeFace);
     }
+    
+    
 }

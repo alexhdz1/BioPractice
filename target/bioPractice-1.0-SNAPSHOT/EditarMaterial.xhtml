@@ -9,8 +9,8 @@
 
     <ui:define name="content" >
         <div class="jumbotron" style="background-color:rgba(248,248,255,0.3) ">
-
-            <h:form>
+            
+            <h:form enctype="multipart/form-data">
                 <h:panelGrid columns= "2">
                     <h:outputText value = "id" style="color: white "/>
                     <h:inputText id="material_id" value ="#{materialController.material.id}" />
@@ -28,9 +28,10 @@
                         <f:selectItem itemLabel="Prestado" itemValue="false"/>
                         <f:selectItem itemLabel="Mantenimiento" itemValue="false"/>
                     </h:selectOneMenu>
+                    <h:inputFile id ="material_imagen" value="#{materialController.file}"/>
                 </h:panelGrid>
                 <h:commandButton value ="Buscar"  class="btn btn-primary my-2 my-sm-0" action="#{materialController.buscar()}" />
-                <h:commandButton value ="Guardar" class="btn btn-primary my-2 my-sm-0" action="#{materialController.guardar()}" />
+                <h:commandButton value ="Guardar" class="btn btn-primary my-2 my-sm-0" actionListener="#{materialController.guardar()}" />
 		<h:commandButton value ="Editar" class="btn btn-primary my-2 my-sm-0" action="#{materialController.modificar()}"/>
 		<h:commandButton value ="Eliminar" class="btn btn-danger my-2 my-sm-0" action="#{materialController.eliminar()}"/>
                 <p:dataTable id="datos" value="#{materialController.getLista()}" var="mat">
@@ -52,6 +53,11 @@
                     <p:column headerText="SubCategoria">
                         <h:outputText value="#{mat.subcategoria}"/>
                     </p:column>
+                    <p:column headerText="Imagen">
+                        <p:graphicImage value="/images/img_material/#{mat.id}.jpg" width="120px" height="120px" />
+                    </p:column>
+                    
+                    
                 </p:dataTable>
             </h:form>
         </div>
