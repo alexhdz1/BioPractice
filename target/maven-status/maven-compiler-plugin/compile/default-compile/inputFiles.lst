@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /home/alexis/Escritorio/BIO/bioPractice/src/main/java/com/muyalware/biopractice/model/Kit.java
 /home/alexis/Escritorio/BIO/bioPractice/src/main/java/com/muyalware/biopractice/controller/exceptions/NonexistentEntityException.java
 /home/alexis/Escritorio/BIO/bioPractice/src/main/java/com/muyalware/biopractice/model/Administrador.java
@@ -27,3 +28,34 @@
 /home/alexis/Escritorio/BIO/bioPractice/src/main/java/com/muyalware/biopractice/model/Alumno.java
 /home/alexis/Escritorio/BIO/bioPractice/src/main/java/com/muyalware/biopractice/controller/KitJpaController.java
 /home/alexis/Escritorio/BIO/bioPractice/src/main/java/com/muyalware/biopractice/controller/exceptions/PreexistingEntityException.java
+=======
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/web/EditarMaterialController.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/web/KitController.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/web/AdministradorController.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/model/Profesor.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/exceptions/IllegalOrphanException.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/model/Kit.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/MaterialJpaController.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/exceptions/PreexistingEntityException.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/web/ProfesorController.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/ProfesorJpaController.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/PreexistingEntityException.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/model/Material.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/AlumnoJpaController.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/web/MaterialController.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/model/PersistenceUtil.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/model/Alumno.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/AdministradorJpaController.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/IllegalOrphanException.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/model/Administrador.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/KitJpaController.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/exceptions/exceptions/NonexistentEntityException.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/web/loginController.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/NonexistentEntityException.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/web/AlumnoController.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/exceptions/exceptions/IllegalOrphanException.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/lib/Mailer.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/exceptions/NonexistentEntityException.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/FiltroController.java
+/Users/kyuSolesito/fCiencias/bioPractice/src/main/java/com/muyalware/biopractice/controller/exceptions/exceptions/PreexistingEntityException.java
+>>>>>>> 4cb4e7d5dc70c4d09f5068768f4673f214516352

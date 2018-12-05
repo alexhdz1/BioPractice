@@ -6,8 +6,8 @@ com/muyalware/biopractice/lib/Mailer.class
 com/muyalware/biopractice/web/AlumnoController.class
 com/muyalware/biopractice/controller/exceptions/exceptions/IllegalOrphanException.class
 com/muyalware/biopractice/model/Profesor_.class
-com/muyalware/biopractice/controller/ProfesorJpaController.class
 com/muyalware/biopractice/web/AdministradorController.class
+com/muyalware/biopractice/controller/ProfesorJpaController.class
 com/muyalware/biopractice/model/Profesor.class
 com/muyalware/biopractice/controller/exceptions/IllegalOrphanException.class
 com/muyalware/biopractice/model/PersistenceUtil.class
